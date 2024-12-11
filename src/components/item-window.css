@@ -1,0 +1,22 @@
+.img-background{
+    background-color: rgb(233, 140, 19);
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+}
+
+.img-background img{
+    width: 240px;
+    margin-top: 30px;
+}
+
+.line-margin{
+    line-height: .4;
+    float: left;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.rating{
+    
+}

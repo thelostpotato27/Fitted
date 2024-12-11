@@ -6,6 +6,7 @@ function About(){
         <p>Some info on Fitted</p>
       </div> */}
       <h1>Vite + React</h1>
+      
     </>
   )
 }

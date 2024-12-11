@@ -1,0 +1,48 @@
+.main{
+    padding-top: 50px;
+}
+
+.intro{
+    overflow: auto;
+    background-color: #E1CFBB;
+    /* padding: 10px 10px 10px 10px; */
+    width: 70vw;
+    height: 60vh;
+    position: static;
+    border-radius: 32px;
+}
+
+.intro-left{
+    float: left;
+    padding-left: 10vw;
+    padding-top: 20vh;
+}
+
+.intro-right{
+    float: right;
+    padding-right: 10vw;
+}
+
+.intro img{
+    width: 20vw;
+    padding-top: 7.5vh;
+}
+
+
+.grid-container{
+    width: 70vw;
+    height: 60vh;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.grid-item{
+    /* background-color: aqua; */
+    border-color: brown;
+    border-style: solid;
+    border-width: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
