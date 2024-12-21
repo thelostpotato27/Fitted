@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {imgDB, txtDB } from "../firebaseConfig";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-function getImg(){
+function GetImg(){
   const [txt,setTxt] = useState('')
   const [img,setImg] = useState('')
 
@@ -25,4 +25,4 @@ function getImg(){
     </div>
   )
 }
-export default getImg;
+export default GetImg;

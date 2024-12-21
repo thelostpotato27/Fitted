@@ -5,11 +5,12 @@ import { Outlet, Link } from "react-router"
 function Header(){
   return (
     <>
-      <nav class="header">
-        <div class="header-left">
+      <nav className="header">
+        <div className="header-left">
           <Link to="/" > Home </Link>
         </div>
-        <div class="header-right">
+        <div className="header-right">
+          <Link to="/Reviews" > Reviews </Link>
           <Link to="/about" > About </Link>
         </div>
       </nav>
