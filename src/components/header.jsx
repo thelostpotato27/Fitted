@@ -11,23 +11,11 @@ function Header(){
         </div>
         <div className="header-right">
           <Link to="/Reviews" > Reviews </Link>
+          <Link to="/Input" > Input </Link>
           <Link to="/about" > About </Link>
         </div>
       </nav>
       <Outlet />
-
-
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/" > Home </Link>
-          </li>
-          <li>
-            <Link to="/about" > About </Link>
-          </li>
-        </ul>
-      </nav>
-      <Outlet /> */}
     </>
   )
 }

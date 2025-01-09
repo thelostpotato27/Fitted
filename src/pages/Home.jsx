@@ -4,7 +4,6 @@ import Item from '../components/item-window'
 // import {app} from "../firebaseConfig.jsx"
 import React, { useEffect, useState } from "react";
 
-import GetImg from "../components/getImg"
 // import {imgDB, txtDB } from "../firebaseConfig";
 
 import { v4 } from "uuid";
@@ -31,7 +30,6 @@ function Home(){
         </div>
       </div>
 
-      <GetImg/>
       {/* <div>
         <input onChange={(e)=>setTxt(e.target.value)} />
         <input type="file" onChange={(e)=>handleUpload(e)} />
