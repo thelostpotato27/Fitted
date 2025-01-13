@@ -5,6 +5,8 @@ import { collection, doc, setDoc, getDoc } from "firebase/firestore"
 import React, { useState, useEffect } from 'react';
 import { v4 } from "uuid";
 import ReactStars from "react-rating-stars-component";
+import ReactCrop from 'react-image-crop'; 
+import 'react-image-crop/dist/ReactCrop.css';
 
 
 
@@ -16,12 +18,17 @@ function Img_input(){
   const [company,setCompany] = useState('')
   const [imgSet,setImg] = useState('')
 
+  const [crop, setCrop] = useState({ aspect: 1 }); 
+  const [croppedImageUrl, setCroppedImageUrl] = useState(null);
+  const [imageRef, setImageRef] = useState(null);
+
   const prepUpload = (e) =>{
     const file = e.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setImg(reader.result); 
+      reader.addEventListener('load', () => setImg(reader.result));
+      // setImg(reader.result); 
     }; 
 
     reader.onerror = (error) => { console.error("Error reading file:", error); };
@@ -68,8 +75,51 @@ function Img_input(){
     setStars('')
   }
 
+  const onImageLoaded = (image) => { 
+    console.log("image ref loaded")
+    setImageRef(image); 
+    return false;
+  };
+
   const ratingChanged = (newRating) => {
     setStars(newRating)
+  };
+
+  const onCropComplete = () => { 
+    if (imageRef && crop.width && crop.height) { 
+      console.log("Creating cropped image.");
+      const canvas = document.createElement('canvas'); 
+      const scaleX = imageRef.naturalWidth / imageRef.width; 
+      const scaleY = imageRef.naturalHeight / imageRef.height; 
+      canvas.width = crop.width; 
+      canvas.height = crop.height; 
+      const ctx = canvas.getContext('2d'); 
+      ctx.drawImage( 
+        imageRef, 
+        crop.x * scaleX, 
+        crop.y * scaleY, 
+        crop.width * scaleX, 
+        crop.height * scaleY, 
+        0, 
+        0, 
+        crop.width, 
+        crop.height 
+      ); 
+      canvas.toBlob((blob) => { 
+        if (!blob) { console.error("Canvas is empty."); return; }
+        else{
+          console.log("blob success")
+        }
+
+        const croppedImageUrl = URL.createObjectURL(blob); 
+        setCroppedImageUrl(croppedImageUrl); 
+      }); 
+    } 
+  };
+
+  const onCropChange = (newCrop) => { 
+    console.log("Crop changed:", newCrop);
+    setCrop(newCrop); 
   };
 
   return(
@@ -97,13 +147,26 @@ function Img_input(){
       <h3>Image</h3>
       <div className='centered-div'>
         <input type="file" onChange={(e)=>prepUpload(e)} />
+        {imgSet && (
+          <ReactCrop 
+            src={imgSet} 
+            crop={crop} 
+            onImageLoaded={onImageLoaded} 
+            onComplete={onCropComplete} 
+            onChange={onCropChange} 
+          />
+        )}
+
+        {croppedImageUrl && ( 
+          <div> 
+            <img src={croppedImageUrl} alt="Cropped" /> 
+          </div> 
+        )}
       </div>
       
 
-      <h3></h3>
-      {imgSet && <img src={imgSet} className='preview-img' alt="Uploaded" />}
+      {/* <h3></h3> */}
 
-      
 
       <h3></h3>
       <button onClick={img_upload}> Submit </button>
