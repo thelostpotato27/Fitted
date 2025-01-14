@@ -11,7 +11,7 @@ function Header(){
         </div>
         <div className="header-right">
           <Link to="/Reviews" > Reviews </Link>
-          <Link to="/about" > About </Link>
+          <Link to="/about" > Insert Review </Link>
         </div>
       </nav>
       <Outlet />

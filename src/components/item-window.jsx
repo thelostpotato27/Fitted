@@ -20,7 +20,7 @@ function Item(props) {
 
   const fetchData = async () => {
     try {
-      const docRef = doc(txtDB, "intro_display", props.num); 
+      const docRef = doc(txtDB, "intro_display", "1"); 
       const docSnap = await getDoc(docRef);
   
       if (docSnap.exists()) {
