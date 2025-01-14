@@ -4,7 +4,6 @@ import Item from '../components/item-window'
 // import {app} from "../firebaseConfig.jsx"
 import React, { useEffect, useState } from "react";
 
-import GetImg from "../components/getImg"
 // import {imgDB, txtDB } from "../firebaseConfig";
 
 import { v4 } from "uuid";
@@ -31,7 +30,12 @@ function Home(){
         </div>
       </div>
 
-      {/* <div className='grid-container'>
+      {/* <div>
+        <input onChange={(e)=>setTxt(e.target.value)} />
+        <input type="file" onChange={(e)=>handleUpload(e)} />
+      </div> */}
+
+      <div className='grid-container'>
         <div className='grid-item' ><Item num="1"/></div>
         <div className='grid-item' ><Item num="2"/></div>
         <div className='grid-item' ><Item num="3"/></div>
@@ -39,7 +43,7 @@ function Home(){
         <div className='grid-item' ><Item num="5"/></div>
         <div className='grid-item' ><Item num="6"/></div>
         <div className='grid-item' ><Item num="7"/></div>
-      </div> */}
+      </div>
     </>
   )
 }
