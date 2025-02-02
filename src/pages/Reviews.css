@@ -1,0 +1,13 @@
+.review-sidebar-org{
+    display: flex;
+    flex-direction: 2 ltr;
+    justify-content: flex-end;
+}
+
+.review-sidebar-org .ReviewSidebar{
+    flex-grow: 1;
+}
+
+.review-sidebar-org .div{
+    flex-grow: 4;
+}

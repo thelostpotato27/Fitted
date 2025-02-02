@@ -3,7 +3,7 @@ import Item from '../components/item-window'
 // import {app} from "../firebaseConfig.jsx"
 import React, { useEffect, useState } from "react";
 
-import Img_input from "../components/img_input"
+import Img_input from "../components/img_input.jsx"
 
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'

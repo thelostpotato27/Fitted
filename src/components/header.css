@@ -10,6 +10,7 @@
     left: 0;
     top: 0;
     margin: auto;
+    z-index: 1;
   }
   
   /* Style the header links */

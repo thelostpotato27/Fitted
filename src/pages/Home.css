@@ -30,9 +30,9 @@
 
 
 .grid-container{
-    width: 70vw;
-    height: 60vh;
-    margin-top: 30px;
+    /* width: 70vw; */
+    height: 80vh;
+    /* margin-top: 30px; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
