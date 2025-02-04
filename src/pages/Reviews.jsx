@@ -1,6 +1,6 @@
 import Item from '../components/item-window'
 import ReviewSidebar from '../components/reviewSidebar'
-import ReviewPopulator from '../components/auto-populater'
+import ReviewPopulator from '../components/auto-populater.jsx'
 import '../components/reviewSidebar.css'
 import React from 'react';
 import './Reviews.css'
