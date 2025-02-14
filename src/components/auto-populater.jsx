@@ -13,38 +13,26 @@ function ReviewPopulator(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // function reviewsGrabbed() {
-  //   console.log("array from Populator: ", data)
-  //   console.log(data.at(1))
-  //   reviewItem = data.map((singleReview) =>
-  //     <li>
-  //       <Autopopwindow reviewData = {singleReview.image}></Autopopwindow>
-  //       <p>{singleReview.image}</p>
-  //     </li>
-  //   )
-  //   return reviewItem
-  // }
+
+  fetchqueryData(setData, [], 5)
 
 
-  const dataOut = fetchqueryData()
+  useEffect(() => {
+    if (data != []){
+      console.log("data changed: ", data)
+      setLoading(false)
 
-
-    // .then((dataArray) => {
-    //   setData(dataArray);
-    //   setLoading(false);
-    //   console.log("data populated full: ", dataArray);
-    //   const entry = dataArray.at(0);
-
-    //   console.log("data populated at 0: ", entry);
-    //   console.log("data after setData: ", data);
-    // }).then(() => {
-    //   // reviewsGrabbed();
-    // })
-
-    
-  // const reviewItem = PopulatevisibleReviews()
+      for (stuff of data){
+        console.log(stuff)
+      }
+    }else{
+      // console.log("data contents: ", data)
+      // console.log("data didnt change, length == ", data.length)
+    }
+  }, [data])
   
-  if(dataOut.length === undefined) {
+  
+  if(loading) {
     console.log("currently loading")
     return(
       <div>
@@ -52,13 +40,13 @@ function ReviewPopulator(){
       </div>
     )
   }else{
-    console.log("current data: ",dataOut)
-    console.log("do we have something here: ",dataOut.length)
+    console.log("current data: ",data)
+    console.log("do we have something here: ",data.length)
     return(
       <>
         <ul>
           <p> placeholder</p>
-          <p> {dataOut[0]}</p>
+          <p> {data[0]}</p>
         </ul>
       </>
     )
