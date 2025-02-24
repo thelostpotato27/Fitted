@@ -13,23 +13,25 @@ function ReviewPopulator(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-  fetchqueryData(setData, [], 5)
-
-
   useEffect(() => {
-    if (data != []){
-      console.log("data changed: ", data)
+    fetchqueryData(5,setData,data).then((fetched) => {
+      // fetched.forEach((review) => {
+      //   console.log("each item in review: ", review)
+      //   setData([...data, review])
+      // })
+      setData([fetched])
       setLoading(false)
+      console.log("current data out")
+      // console.log(data)
+      console.log("first item in data")
+    })
+  }, []);
 
-      for (stuff of data){
-        console.log(stuff)
-      }
-    }else{
-      // console.log("data contents: ", data)
-      // console.log("data didnt change, length == ", data.length)
-    }
-  }, [data])
+
+  
+  // console.log("data first item")
+  // const temp_img = data[0].image
+  // console.log(temp_img)
   
   
   if(loading) {
@@ -40,13 +42,15 @@ function ReviewPopulator(){
       </div>
     )
   }else{
-    console.log("current data: ",data)
-    console.log("do we have something here: ",data.length)
+    // console.log("current data: ",data)
+    // console.log("do we have something here: ",data.length)
     return(
       <>
         <ul>
           <p> placeholder</p>
-          <p> {data[0]}</p>
+          {/* <div className='img-background'>
+            {data ? <img src={data[0].image} alt="item image" /> : <p>Loading...</p>}
+          </div> */}
         </ul>
       </>
     )
