@@ -37,28 +37,14 @@ async function fetchqueryData(num_fetch, setData, data) {
     })
   }
 
-  async function stateConvert(reviews){
-    // console.log("state conversion start")
-    reviews.forEach((review) => {
-      // console.log("converting item: ", review);
-      // setData( data => [...getR, review]);
-    })
-  }
 
   const querySnapshot = await getDocs(q);
   await getReviewdata(querySnapshot);
   await parseReviewdata(getReviewarr);
-  await stateConvert(parseReviewarr);
 
-  console.log("fetch query returned: ",parseReviewarr)
-
-  setData([1,2,3,4,5])
-  console.log("data sest directly: ", data)
+  console.log("fetch query returned: ",parseReviewarr[0])
 
   return parseReviewarr;
-
-  
-  
 }
 
 export default fetchqueryData;
