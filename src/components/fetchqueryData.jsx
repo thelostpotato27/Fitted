@@ -10,31 +10,54 @@ async function fetchqueryData(num_fetch, setData, data) {
   // const [getR, setR] = useState([]);
   var getReviewarr = [];
   var parseReviewarr = [];
+  var QsnapshottoDoc = [];
+  var results;
+  var finalresults;
+  
 
   async function getReviewdata(querySnapshot){
     querySnapshot.forEach((doc) => {
       const allreviews = collection(txtDB, "Clothing-item", doc.id, "reviews");
       const firstReview = query(allreviews);
-      getReviewarr.push({reviewdata: doc.data(), firstreview: firstReview});
-      // getReviewarr = [...getReviewarr, {reviewdata: doc.data(), firstreview: firstReview}];
+      getReviewarr = [...getReviewarr, {reviewdata: doc.data(), firstreview: firstReview}];
     })
   }
 
   async function parseReviewdata(reviews){
-    reviews.forEach((review) => {
-      getDocs(review.firstreview).then((reviewSnapshot) => {
-        reviewSnapshot.forEach((doc2) => {
-          const imgref = ref(imgDB, `Imgs/${doc2.data().image}`);
-          getDownloadURL(imgref).then(val => {
-            parseReviewarr.push({image: val, review: doc2.data(), header: review.reviewdata})
+    // console.log("size: ", reviews.length)
+    const promises = reviews.map((review) =>
+      getDocs(review.firstreview)
+      // .then((reviewSnapshot) => {
+      //   reviewSnapshot.forEach((doc2) => {
+      //     const imgref = ref(imgDB, `Imgs/${doc2.data().image}`);
+      //     // parseReviewarr = [...parseReviewarr, {imgref: imgref, review: doc2.data(), header: review.reviewdata}]
+      //     return getDownloadURL(imgref)
+      //   })
+      // })
+    )
+    results = await Promise.all(promises);
+    // results.forEach((result, index) => {
+    //   console.log(`result for query ${index + 1}: `,result)
+    // })
 
-            // parseReviewarr = [...parseReviewarr, {image: val, review: doc2.data(), header: review.reviewdata}]
-          }).catch(error => {
-            console.error("Error getting download URL:", error);
-          });
-        })
+    // console.log("before process: ",results)
+
+    results.forEach((doc1) => {
+      doc1.forEach((doc2) => {
+        QsnapshottoDoc = [...QsnapshottoDoc, doc2.data()]
       })
+      
     })
+
+    // console.log("intermediate step: ",QsnapshottoDoc)
+
+    const promises2 = QsnapshottoDoc.map((reviewSnapshot) => getDownloadURL(ref(imgDB, `Imgs/${reviewSnapshot.image}`)))
+
+    finalresults = await Promise.all(promises2);
+    // console.log("images")
+    // finalresults.forEach((result, index) => {
+    //   console.log(`result for query ${index + 1}: `,result)
+    // })
   }
 
 
@@ -42,9 +65,10 @@ async function fetchqueryData(num_fetch, setData, data) {
   await getReviewdata(querySnapshot);
   await parseReviewdata(getReviewarr);
 
-  console.log("fetch query returned: ",parseReviewarr[0])
-
-  return parseReviewarr;
+  return finalresults;
+  
+  
+  
 }
 
 export default fetchqueryData;

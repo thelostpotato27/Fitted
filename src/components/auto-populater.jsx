@@ -11,33 +11,45 @@ import { useState, useEffect } from 'react';
 
 function ReviewPopulator(){
   const [data, setData] = useState([]);
+  const [preprocess, setpreprocess] = useState([]);
   const [loading, setLoading] = useState(true);
+
+ 
+
+  useEffect(() => {
+    console.log("data has been updated: ",data[0]);
+    setLoading(false);
+  }, [data]);
+
+  // useEffect(() => {
+  //   try{
+  //     preprocess.forEach((preimg) => {
+  //       console.log("preimg out: ", preimg)
+  //       console.log("preimg imgref out: ", preimg.imgref)
+  //       getDownloadURL(preimg.imgref).then(val => {
+  //         console.log("populated parseReviewArr: ", val)
+  //         filled += 1;
+  //         console.log("amount filled: ", filled)
+  //       }).catch(error => {
+  //         console.error("Error getting download URL:", error);
+  //       });
+  //     })
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }, [preprocess])
+
 
   useEffect(() => {
     fetchqueryData(5,setData,data).then((fetched) => {
       setData(fetched)
-      
-      // console.log("current data out")
-      // console.log(data)
-      // console.log("first item in data")
-
     })
   }, []);
 
-  useEffect(() => {
-    console.log("data has been updated: ",data[0]);
-    if (data != []){
-      const firstItem = data[0]
-      console.log(firstItem)
-    }
-    
-    setLoading(false);
-    console.log("data items: ",data[0])
-  }, [data]);
+  console.log("preprocessed outside: ",data)
 
-  console.log("data here: ",data)
   
-  if(!loading && (data != [])) {
+  if(!loading && (data[0] != undefined)) {
     return(
       <>
         <ul>
@@ -45,7 +57,7 @@ function ReviewPopulator(){
           {/* <div className='img-background'>
             {data ? <img src={data[0].image} alt="item image" /> : <p>Loading...</p>}
           </div> */}
-          {/* <p>{data[0].image}</p> */}
+          <img src={data[0]}></img>
         </ul>
       </>
     )
@@ -56,6 +68,7 @@ function ReviewPopulator(){
     return(
       <div>
         <p>Loading...</p>
+        {/* <button onclick={setData(temp)}></button> */}
       </div>
     )
   }
