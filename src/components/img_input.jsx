@@ -26,9 +26,9 @@ function Img_input(){
   const [cropfile, setcropfile] = useState(null)
   const [crop, setCrop] = useState({
     unit: 'px', // Can be 'px' or '%'
-    x: 100,
-    y: 100,
-    width: 100,
+    x: 0,
+    y: 0,
+    width: 75,
     height: 100
     })
 
@@ -89,6 +89,13 @@ function Img_input(){
     setsrc('')
     setStars(3)
     setcropfile(null)
+    setCrop({
+      unit: 'px',
+      x: 0,
+      y: 0,
+      width: 75,
+      height: 100
+      })
     console.log("img uploader fin")
   }
 
@@ -127,7 +134,7 @@ function Img_input(){
       <div className='centered-div'>
         <ReactStars
           count={5}
-          value={3}
+          value={0}
           onChange={ratingChanged}
           size={24}
           activeColor="#ffd700"
@@ -148,7 +155,7 @@ function Img_input(){
             // onImageLoad={setimg} 
             onComplete={displayCrop} 
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-            // aspect={1}
+            aspect={.75}
           >
             <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
           </ReactCrop>

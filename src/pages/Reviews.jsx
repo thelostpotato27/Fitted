@@ -1,6 +1,6 @@
 import Item from '../components/item-window'
 import ReviewSidebar from '../components/reviewSidebar'
-import ReviewPopulator from '../components/auto-populater.jsx'
+import ReviewPopulator from '../components/auto-populator.jsx'
 import '../components/reviewSidebar.css'
 import React from 'react';
 import './Reviews.css'
@@ -15,6 +15,7 @@ function Reviews(){
         <ReviewSidebar>
         </ReviewSidebar>
         <ReviewPopulator></ReviewPopulator>
+        
 
       </div>
       

@@ -30,11 +30,6 @@ function Home(){
         </div>
       </div>
 
-      {/* <div>
-        <input onChange={(e)=>setTxt(e.target.value)} />
-        <input type="file" onChange={(e)=>handleUpload(e)} />
-      </div> */}
-
       <div className='grid-container'>
         <div className='grid-item' ><Item num="1"/></div>
         <div className='grid-item' ><Item num="2"/></div>

@@ -1,0 +1,7 @@
+.preview-img{
+    flex-direction: row;
+    /* flex: 0 1 auto; */
+    background-color: brown;
+    flex-wrap: wrap;
+    display: flex;
+}
