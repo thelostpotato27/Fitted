@@ -11,7 +11,7 @@ function Reviews(){
   return(
     <>
       {/* <ReviewSidebar className="sidebar"/> */}
-      <div className="review-sidebar-org">
+      <div className="review-content">
         <ReviewSidebar>
         </ReviewSidebar>
         <ReviewPopulator></ReviewPopulator>

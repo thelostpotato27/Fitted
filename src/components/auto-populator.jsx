@@ -29,8 +29,6 @@ function ReviewPopulator(){
     return(
       <>
         <div className='preview-img'>
-          {/* <Item_preview data = {data[0]}/>
-          <Item_preview data = {data[1]}/> */}
           {data.map((element, index) => (
             <Item_preview data = {element}/>
           ))}
