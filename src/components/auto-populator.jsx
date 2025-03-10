@@ -6,6 +6,7 @@ import {imgDB, txtDB } from "../firebaseConfig.jsx"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { collection, doc, setDoc, query, limit, getDocs  } from "firebase/firestore"
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router";
 
 
 
@@ -24,13 +25,19 @@ function ReviewPopulator(){
     })
   }, []);
 
+  function combineURL(urlName) {
+    return `/Reviews/${urlName}`
+  }
   
   if(!loading && (data[0] != undefined)) {
     return(
       <>
         <div className='preview-img'>
-          {data.map((element, index) => (
-            <Item_preview data = {element}/>
+          {data.map((element) => (
+            <Link to= {combineURL(element.name)}>
+              <Item_preview data = {element}/>
+            </Link>
+            
           ))}
         </div>
       </>
