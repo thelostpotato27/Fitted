@@ -66,7 +66,7 @@ function Img_input(){
     uploadBytes(imgs, cropfile).then(data=>{
       console.log(data,"imgs")
     })
-    const clothingID = v4()
+    const clothingID = company +"-"+ name
     setDoc(doc(txtDB, "Clothing-item", clothingID), {
       name: name,
       company: company,

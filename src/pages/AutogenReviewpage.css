@@ -1,0 +1,29 @@
+.autogen-page-layout{
+    padding-top: 50px;
+    background-color: bisque;
+    max-width: 1680px !important;
+    width: 90vw;
+    margin: 0 auto;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.autogen-layout{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-top: 50px;
+    background-color: brown;
+    flex-wrap: wrap;
+    
+}
+
+.autogen-item{
+    justify-content: left;
+    background-color: aqua;
+}
+
+.autogen-item img{
+    height: 300px
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useParams } from "react-router";
 import fetchClothingData from '../components/clothingData';
+import './AutogenReviewpage.css'
+import Input_review from '../components/review-input'
 
 function ReviewsPage(inputVars) {
     let params = useParams()
@@ -26,18 +28,25 @@ function ReviewsPage(inputVars) {
 
     if (!loading){
       return (
-        <div>
+        <div className='autogen-page-layout'>
           <h2>Customer Reviews</h2>
-          <ul>
-            {reviews.map(review => (
-              <div>
-                {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
-                {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
-                {review ? <p>{review.review}</p> : <p>Loading...</p>}
-              </div>
-            ))}
-          </ul>
+          <div className='autogen-layout'>
+            <ul>
+              {reviews.map(review => (
+                <div className='autogen-item'>
+                  {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
+                  {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
+                  {review ? <p>{review.review}</p> : <p>Loading...</p>}
+                </div>
+              ))}
+              
+            </ul>
+          </div>
+          <div>
+            <Input_review />
+          </div>
         </div>
+        
       );
     }else{
       return(
