@@ -26,7 +26,7 @@ function ReviewPopulator(){
   }, []);
 
   function combineURL(urlName) {
-    return `/Reviews/${urlName}`
+    return `/Reviews/${urlName.company}-${urlName.name}`
   }
   
   if(!loading && (data[0] != undefined)) {
@@ -34,7 +34,7 @@ function ReviewPopulator(){
       <>
         <div className='preview-img'>
           {data.map((element) => (
-            <Link to= {combineURL(element.name)}>
+            <Link to= {combineURL(element)}>
               <Item_preview data = {element}/>
             </Link>
             

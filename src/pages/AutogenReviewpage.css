@@ -22,6 +22,8 @@
 .autogen-item{
     justify-content: left;
     background-color: aqua;
+    /* display: flex;
+    flex-direction: row; */
 }
 
 .autogen-item img{

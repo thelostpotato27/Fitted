@@ -17,7 +17,7 @@ async function fetchqueryData(num_fetch) {
   async function getReviewdata(querySnapshot){
     querySnapshot.forEach((doc) => {
       const allreviews = collection(txtDB, "Clothing-item", doc.id, "reviews");
-      const firstReview = query(allreviews);
+      const firstReview = query(allreviews, limit(1));
       getReviewarr = [...getReviewarr, {reviewdata: doc.data(), firstreview: firstReview}];
     })
   }
@@ -38,6 +38,7 @@ async function fetchqueryData(num_fetch) {
 
   const querySnapshot = await getDocs(q);
   await getReviewdata(querySnapshot);
+  console.log("reviewarr: ", getReviewarr)
   await parseReviewdata(getReviewarr);
   
   finalresults = getReviewarr.map((data, index) => 

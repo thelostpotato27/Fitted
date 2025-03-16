@@ -23,24 +23,19 @@ function ReviewsPage(inputVars) {
       }
     })
 
-    console.log("in autogen reviews: ",reviews)
-    console.log("in autogen header: ",headerData)
-
     if (!loading){
       return (
         <div className='autogen-page-layout'>
           <h2>Customer Reviews</h2>
           <div className='autogen-layout'>
-            <ul>
-              {reviews.map(review => (
-                <div className='autogen-item'>
-                  {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
-                  {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
-                  {review ? <p>{review.review}</p> : <p>Loading...</p>}
-                </div>
-              ))}
+            {reviews.map(review => (
+              <div className='autogen-item'>
+                {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
+                {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
+                {review ? <p>{review.review}</p> : <p>Loading...</p>}
+              </div>
+            ))}
               
-            </ul>
           </div>
           <div>
             <Input_review />

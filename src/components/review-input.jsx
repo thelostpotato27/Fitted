@@ -5,9 +5,9 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {imgDB, txtDB } from "../firebaseConfig"
 import { useParams } from "react-router";
 import ReactCrop, {convertToPixelCrop} from 'react-image-crop'
-import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc } from "firebase/firestore"
 import { v4 } from "uuid"
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Input_review(){
   const [stars,setStars] = useState(3)
@@ -24,8 +24,21 @@ function Input_review(){
     width: 75,
     height: 100
   })
-  let params = useParams()
 
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
+  let params = useParams()
   const prepUpload = (e) =>{
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -79,21 +92,14 @@ function Input_review(){
       console.log(data,"imgs")
     })
 
-    const collectionRef = collection(txtDB, "Clothing-item");
-    const q = query(collectionRef, where("name", "==", `${params.page_name}`));
-    const querySnapshot = await getDocs(q);
-    console.log("query snapshot: ", querySnapshot)
-    console.log("params page name: ", params.pageName)
-    querySnapshot.forEach((doc) => {
-      console.log("query snapshot doc: ",doc)
-      const docRef = doc(txtDB, "Clothing-item", doc.id, "reviews")
-      updateDoc(docRef, {
-        review: review,
-        image: imgID,
-        rating: stars,
-        timestamp: Date.now()
-      })
+    const collectionRef = collection(txtDB, "Clothing-item", `${params.pageName}`, "reviews")
+    addDoc(collectionRef, {
+      review: review,
+      image: imgID,
+      rating: stars,
+      timestamp: Date.now()
     })
+    
     
     setReview('')
     setsrc('')

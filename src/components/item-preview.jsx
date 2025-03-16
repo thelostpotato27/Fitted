@@ -13,7 +13,6 @@ function Item_preview(vars){
     }
   });
   
-  console.log("item preview data: ",imageData)
   return (
     <>
       <div className='preview-background'>
