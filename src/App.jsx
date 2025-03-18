@@ -9,7 +9,9 @@ import Home from './pages/home'
 import About from './pages/About'
 import Input_page from './pages/Input'
 import Reviews from './pages/Reviews'
-import ReviewsPage from './pages/AutogenReviewpage';
+import ReviewsPage from './pages/AutogenReviewpage'
+import LoginPage from './pages/Login'
+
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
             <Route path="Reviews/:pageName" element={<ReviewsPage/>}/>
             <Route path="Input" element={<Input_page />} />
             <Route path="About" element={<About />} />
+            <Route path="Login" element={<LoginPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
