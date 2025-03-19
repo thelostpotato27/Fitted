@@ -4,9 +4,10 @@ import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import {app} from "../firebaseConfig"
 
+
 function LoginPage() {
 
-  const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(getAuth);
+  const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(getAuth(app));
 
   const uiConfig = {
     // callbacks: {
@@ -24,7 +25,7 @@ function LoginPage() {
     // },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     // signInFlow: 'popup',
-    signInSuccessUrl: '/Home',
+    signInSuccessUrl: '/',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       {
