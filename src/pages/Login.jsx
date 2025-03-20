@@ -1,37 +1,16 @@
 import {app} from "../firebaseConfig"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Google_Login from "../components/user_management/google/auth_google_provider_create"
+import email_Login from "../components/user_management/email/email_login"
+import email_Signup from "../components/user_management/email/email_signup"
+
 
 function LoginPage(){
-  // const auth = getAuth(app);
-
-  // createUserWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     // Signed up 
-  //     const user = userCredential.user;
-  //     // ...
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     // ..
-  //   });
-
-
-  // signInWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     // Signed in 
-  //     const user = userCredential.user;
-  //     // ...
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //   });
-
   return(
     <div>
       <button onClick={Google_Login}>Google Login</button>
+      <button onClick={email_Login}>Email Login</button>
+      <button onClick={email_Signup}>Email Signup</button>
     </div>
   )
 }
