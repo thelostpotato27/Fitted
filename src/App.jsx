@@ -10,7 +10,7 @@ import About from './pages/About'
 import Input_page from './pages/Input'
 import Reviews from './pages/Reviews'
 import ReviewsPage from './pages/AutogenReviewpage'
-import Login from './pages/Login'
+import LoginPage from './pages/Login'
 
 
 
@@ -27,7 +27,7 @@ function App() {
             <Route path="Reviews/:pageName" element={<ReviewsPage/>}/>
             <Route path="Input" element={<Input_page />} />
             <Route path="About" element={<About />} />
-            <Route path="Login" element={<Login />} />
+            <Route path="Login" element={<LoginPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
