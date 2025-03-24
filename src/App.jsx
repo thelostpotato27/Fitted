@@ -11,6 +11,8 @@ import Input_page from './pages/Input'
 import Reviews from './pages/Reviews'
 import ReviewsPage from './pages/AutogenReviewpage'
 import LoginPage from './pages/Login'
+import EmailLoginPage from './pages/EmailLogin'
+import EmailSignupPage from './pages/EmailSignup'
 
 
 
@@ -28,6 +30,8 @@ function App() {
             <Route path="Input" element={<Input_page />} />
             <Route path="About" element={<About />} />
             <Route path="Login" element={<LoginPage />} />
+            <Route path="Login/email" element={<EmailLoginPage />} />
+            <Route path="Login/signupemail" element={<EmailSignupPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
