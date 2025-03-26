@@ -1,4 +1,4 @@
-import {app} from "../firebaseConfig"
+import {app, auth} from "../firebaseConfig"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Google_Login from "../components/user_management/google/auth_google_provider_create"
 import { useState, useEffect } from 'react';
@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Routes, Link, useParams, useNavigate } 
 function EmailLoginPage(){
   const [email,setemail] = useState("")
   const [password,setpassword] = useState("")
-  const auth = getAuth(app);
   const navigate = useNavigate()
 
   function email_Login(){  

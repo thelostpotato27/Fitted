@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import setCanvasPreview from "./crop_preview.js";
 import ReactStars from "react-rating-stars-component"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
-import {imgDB, txtDB } from "../firebaseConfig"
+import {imgDB, txtDB, auth } from "../firebaseConfig"
 import { useParams } from "react-router";
 import ReactCrop, {convertToPixelCrop} from 'react-image-crop'
 import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc } from "firebase/firestore"
@@ -25,12 +25,12 @@ function Input_review(){
     height: 100
   })
 
-  const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/auth.user
       const uid = user.uid;
+      console.log("review input user data: ", user)
       // ...
     } else {
       // User is signed out

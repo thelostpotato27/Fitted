@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -13,6 +13,7 @@ import ReviewsPage from './pages/AutogenReviewpage'
 import LoginPage from './pages/Login'
 import EmailLoginPage from './pages/EmailLogin'
 import EmailSignupPage from './pages/EmailSignup'
+import UserPage from './pages/User'
 
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="Login" element={<LoginPage />} />
             <Route path="Login/email" element={<EmailLoginPage />} />
             <Route path="Login/signupemail" element={<EmailSignupPage />} />
+            <Route path="User" element={<UserPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>
