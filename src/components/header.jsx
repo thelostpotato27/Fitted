@@ -4,30 +4,25 @@ import React, { useEffect, useState, useRef } from 'react';
 import userAuth from './auth_state_listener.jsx'
 import {app, auth} from "../firebaseConfig"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {useGlobalContext} from "./global_context";
 
 
 function Header(){  
   const [loginName,setloginName] = useState("Login")
   const [logindest,setlogindest] = useState("/login")
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const userOut = user.uid;
-      console.log("header login recognized: ", user)
-      setloginName("User")
-      setlogindest("/user")
-    } else {
-      // User is signed out
-      // ...
-      console.log("User logged out, seen from header")
+  const { globalVariable, setGlobalVariable } = useGlobalContext();
+  
+  userAuth()
+  useEffect(() => {
+    if(globalVariable == null){
       setloginName("Login")
       setlogindest("/login")
+    }else{
+      setloginName("User")
+      setlogindest("/user")
     }
-  });
-
-  const temp = userAuth()
-  console.log("auth state listener out: ", temp)
+  }, [globalVariable])
+  
 
   return (
     <>

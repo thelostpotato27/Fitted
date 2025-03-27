@@ -14,14 +14,14 @@ import LoginPage from './pages/Login'
 import EmailLoginPage from './pages/EmailLogin'
 import EmailSignupPage from './pages/EmailSignup'
 import UserPage from './pages/User'
-
+import {GlobalProvider} from "./components/global_context";
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
+    <GlobalProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />}>
@@ -37,7 +37,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </GlobalProvider>
   )
 }
 

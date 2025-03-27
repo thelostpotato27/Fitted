@@ -28,7 +28,6 @@ function Item(props) {
         setData(data)
 
         const company = data.company;
-        console.log("Company:", company); 
       } else {
         console.log("No such document!");
       }
