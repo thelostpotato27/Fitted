@@ -13,3 +13,18 @@ export const GlobalProvider = ({ children }) => {
 };
 
 export const useGlobalContext = () => useContext(GlobalContext);
+
+
+const ReviewGlobalContext = createContext();
+
+export const ReviewGlobalProvider = ({ children }) => {
+  const [globalVariable, setGlobalVariable] = useState(null);
+
+  return (
+    <ReviewGlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>
+      {children}
+    </ReviewGlobalContext.Provider>
+  );
+};
+
+export const useReviewGlobalContext = () => useContext(ReviewGlobalContext);

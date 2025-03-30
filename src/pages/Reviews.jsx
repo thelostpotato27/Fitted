@@ -4,19 +4,20 @@ import ReviewPopulator from '../components/auto-populator.jsx'
 import '../components/reviewSidebar.css'
 import React from 'react';
 import './Reviews.css'
+import {ReviewGlobalProvider} from '../components/global_context.jsx'
 
 
 function Reviews(){
 
   return(
     <>
-      {/* <ReviewSidebar className="sidebar"/> */}
       <div className="review-content">
-        <ReviewSidebar>
-        </ReviewSidebar>
-        <ReviewPopulator></ReviewPopulator>
-        
-
+        <ReviewGlobalProvider>
+          <ReviewSidebar>
+          </ReviewSidebar>
+          <ReviewPopulator>
+          </ReviewPopulator>
+        </ReviewGlobalProvider>
       </div>
       
     </>

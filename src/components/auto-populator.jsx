@@ -7,12 +7,12 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { collection, doc, setDoc, query, limit, getDocs  } from "firebase/firestore"
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router";
-
-
+import {useReviewGlobalContext} from './global_context'
 
 function ReviewPopulator(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { globalVariable, setGlobalVariable } = useReviewGlobalContext();
 
   useEffect(() => {
     setLoading(false);
