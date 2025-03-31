@@ -13,10 +13,9 @@ function Reviews(){
     <>
       <div className="review-content">
         <ReviewGlobalProvider>
-          <ReviewSidebar>
-          </ReviewSidebar>
-          <ReviewPopulator>
-          </ReviewPopulator>
+          <ReviewSidebar/>
+          {/* <ReviewSidebar className="sidebartwo"/> */}
+          {/* <ReviewPopulator className="Populator" /> */}
         </ReviewGlobalProvider>
       </div>
       

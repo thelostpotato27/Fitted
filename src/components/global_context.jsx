@@ -18,7 +18,7 @@ export const useGlobalContext = () => useContext(GlobalContext);
 const ReviewGlobalContext = createContext();
 
 export const ReviewGlobalProvider = ({ children }) => {
-  const [globalVariable, setGlobalVariable] = useState(null);
+  const [globalVariable, setGlobalVariable] = useState({searchType: "standard", starRating: 0, clothingType: "none"});
 
   return (
     <ReviewGlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>
