@@ -10,16 +10,17 @@ import {ReviewGlobalProvider} from '../components/global_context.jsx'
 function Reviews(){
 
   return(
-    <>
-      <div className="review-content">
-        <ReviewGlobalProvider>
+    <div className="review-content">
+      <ReviewGlobalProvider>
+        <div className="sidebarsize">
           <ReviewSidebar/>
-          {/* <ReviewSidebar className="sidebartwo"/> */}
-          {/* <ReviewPopulator className="Populator" /> */}
-        </ReviewGlobalProvider>
-      </div>
-      
-    </>
+        </div>
+        <div className="Populator">
+          <ReviewPopulator/>
+        </div>
+        
+      </ReviewGlobalProvider>
+    </div>
   )
 }
 

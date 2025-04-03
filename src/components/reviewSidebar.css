@@ -1,9 +1,9 @@
 .sidebar {
-  width: 250px;  /* Sets the width of the sidebar */
+  width: 250px;
   height: 100vh;  /* Sets the height of the sidebar to cover the entire viewport */
   color: rgb(172, 7, 187);  /* Sets the text color */
   box-shadow: 2px 0 5px rgba(0,0,0,0.5);  /* Adds a shadow effect to the right of the sidebar */
-  position: fixed; /* Sticks the sidebar to the left */
+  position: fixed;
   top: 5;
   left: 0;
   overflow-y: auto;
@@ -11,4 +11,9 @@
 
 .menustyling {
   text-align: left;
+}
+
+.updateButton {
+  width: 230px;
+  height: 50px;
 }

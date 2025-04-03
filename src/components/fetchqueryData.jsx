@@ -4,10 +4,10 @@ import { collection, doc, setDoc, query, limit, getDocs  } from "firebase/firest
 import React, { useState, useEffect } from 'react';
 
 
-async function fetchqueryData(num_fetch) {
+async function fetchqueryData(num_fetch, searchParams) {
+  console.log("search params item type: ",searchParams)
   const collectionRef = collection(txtDB, "Clothing-item");
   const q = query(collectionRef, limit(num_fetch));
-  // const [getR, setR] = useState([]);
   var getReviewarr = [];
   var QsnapshottoDoc = [];
   var results;

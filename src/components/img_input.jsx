@@ -4,15 +4,18 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { collection, doc, setDoc, getDoc } from "firebase/firestore"
 import React, { useState, useEffect, useRef } from 'react'
 import { v4 } from "uuid"
-import ReactStars from "react-rating-stars-component"
 import ReactCrop, {convertToPixelCrop} from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 import setCanvasPreview from "./crop_preview.js";
+import {useGlobalContext} from './global_context'
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
 
 
 function Img_input(){
+  const { globalVariable, setGlobalVariable } = useGlobalContext();
   const [name,setName] = useState('')
-  const [stars,setStars] = useState(3)
   const [url,setUrl] = useState('')
   const [review,setReview] = useState('')
   const [company,setCompany] = useState('')
@@ -71,7 +74,9 @@ function Img_input(){
       name: name,
       company: company,
       url: url,
-      ethnicity: "TBD"
+      ethnicity: "TBD",
+      staravg: stars,
+      reviewnum: 1
 
     });
     const reviewID = v4()
@@ -79,8 +84,14 @@ function Img_input(){
       review: review,
       image: imgID,
       rating: stars,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      user: globalVariable.uid
     });
+
+    setDoc(doc(txtDB, "User-data", globalVariable.uid, "my-reviews", reviewID), {
+      clothingID: clothingID,
+      reviewID: reviewID
+    })
     setShowPopup(1)
     setName('')
     setUrl('')
@@ -99,9 +110,28 @@ function Img_input(){
     console.log("img uploader fin")
   }
 
-  const ratingChanged = (newRating) => {
-    setStars(newRating)
+  // all my star ratings code
+
+  const [stars,setStars] = useState(2)
+  const [hover, setHover] = useState(-1);
+
+  const labels = {
+    0.5: 'Useless   ',
+    1: 'Useless+  ',
+    1.5: 'Poor      ',
+    2: 'Poor+     ',
+    2.5: 'Ok        ',
+    3: 'Ok+       ',
+    3.5: 'Good      ',
+    4: 'Good+     ',
+    4.5: 'Excellent ',
+    5: 'Excellent+',
   };
+
+  function getLabelText(stars) {
+    return `${stars} Star${stars !== 1 ? 's' : ''}, ${labels[stars]}`;
+  }
+
 
   const displayCrop = () => { 
     console.log("display crop runs")
@@ -121,75 +151,91 @@ function Img_input(){
     }, 'image/png')
   };
 
-  return(
-    <div >
-      <h3>Item Name</h3>
-      <input value={name} onChange={(e)=>setName(e.target.value)} />
+  if(globalVariable != null){
+    return(
+      <div >
+        <h3>Item Name</h3>
+        <input value={name} onChange={(e)=>setName(e.target.value)} />
 
-      <h3>Company</h3>
-      <input value={company} onChange={(e)=>setCompany(e.target.value)} />
+        <h3>Company</h3>
+        <input value={company} onChange={(e)=>setCompany(e.target.value)} />
 
-      <h3>Item Review</h3>
-      <input value={review} onChange={(e)=>setReview(e.target.value)} />
-      <div className='centered-div'>
-        <ReactStars
-          count={5}
-          value={0}
-          onChange={ratingChanged}
-          size={24}
-          activeColor="#ffd700"
-          
-        />
-      </div>
+        <h3>Item Review</h3>
+        <input value={review} onChange={(e)=>setReview(e.target.value)} />
+        <h3></h3>
+        <div>
+          <Rating
+            name="hover-feedback"
+            stars={stars}
+            precision={0.5}
+            getLabelText={getLabelText}
+            onChange={(event, newValue) => {
+              setStars(newValue);
+            }}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
+            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+          />
+          {stars !== null &&(
+            <div>{labels[hover !== -1 ? hover : stars]}</div>
+          )}
+        </div>
 
-      <h3>Item Link</h3>
-      <input value={url} onChange={(e)=>setUrl(e.target.value)} />
+        <h3>Item Link</h3>
+        <input value={url} onChange={(e)=>setUrl(e.target.value)} />
 
-      <h3>Image</h3>
-      <div className='centered-div'>
-        <input type="file" onChange={(e)=>prepUpload(e)} />
-        {src && (
-          <ReactCrop 
-            src={src}
-            crop={crop} 
-            // onImageLoad={setimg} 
-            onComplete={displayCrop} 
-            onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-            aspect={.75}
-          >
-            <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
-          </ReactCrop>
+        <h3>Image</h3>
+        <div className='centered-div'>
+          <input type="file" onChange={(e)=>prepUpload(e)}/>
+          {src && (
+            <ReactCrop 
+              src={src}
+              crop={crop} 
+              // onImageLoad={setimg} 
+              onComplete={displayCrop} 
+              onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
+              aspect={.75}
+            >
+              <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
+            </ReactCrop>
+          )}
+        </div>
+        <div>
+          {crop && (
+            <canvas 
+              ref={previewCanvasRef}
+              style={{
+                display: "none",
+                border: "1px solid black",
+                objectFit: "contain",
+                width: 150,
+                height: 150,
+              }}
+          />
+        )}
+        </div>
+        <h3></h3>
+        <button onClick={img_upload}> 
+          Submit 
+          {/* {showPopup ? 'Close Pop-up' : 'Open Pop-up'} */}
+        </button>
+        {showPopup && (
+          <div className="popup">
+            <div className="popup-inner">
+              <h2>Pop-up Content</h2>
+              <p>This is a simple pop-up example.</p>
+              <button onClick={togglePopup}>Close</button>
+            </div>
+          </div>
         )}
       </div>
-      <div>
-        {crop && (
-          <canvas 
-            ref={previewCanvasRef}
-            style={{
-              display: "none",
-              border: "1px solid black",
-              objectFit: "contain",
-              width: 150,
-              height: 150,
-            }}
-        />
-      )}
-      </div>
-      <h3></h3>
-      <button onClick={img_upload}> 
-        Submit 
-        {/* {showPopup ? 'Close Pop-up' : 'Open Pop-up'} */}
-      </button>
-      {showPopup && (
-        <div className="popup">
-          <div className="popup-inner">
-            <h2>Pop-up Content</h2>
-            <p>This is a simple pop-up example.</p>
-            <button onClick={togglePopup}>Close</button>
-          </div>
-        </div>
-      )}
+    )
+  }else{
+    <div>
+      <p>Please login before submitting a review</p>
     </div>
-  )
+  }
+  
 }
 export default Img_input;

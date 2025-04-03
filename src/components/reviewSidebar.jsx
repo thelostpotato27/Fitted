@@ -23,6 +23,7 @@ function ReviewSidebar(){
   const { globalVariable, setGlobalVariable } = useReviewGlobalContext();
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
+
   const [gender, setgender] = useState(null);
   const [clothingType, setclothingType] = useState(null);
   const [searchType, setsearchType] = useState(null);
@@ -63,69 +64,77 @@ function ReviewSidebar(){
     return (<BiCheckbox/>)
   }
 
-  return(
-    <>
-      <div className="sidebar">
-        <Sidebar
-          className={`app  ${toggled ? "toggled" : ""}`}
-          // className="sidebar"
-          // style={{ height: "100%", position: "absolute" }}
-          collapsed={collapsed}
-          toggled={toggled}
-          handleToggleSidebar={handleToggleSidebar}
-          handleCollapsedChange={handleCollapsedChange}
-        >
-          <main>
-            <Menu>
-              {collapsed ? (
-                <MenuItem
-                  icon={<FiChevronsRight />}
-                  onClick={handleCollapsedChange}
-                ></MenuItem>
-              ) : (
-                <MenuItem
-                  suffix={<FiChevronsLeft />}
-                  onClick={handleCollapsedChange}
-                >
-                  <div
-                    style={{
-                      padding: "9px",
-                      // textTransform: "uppercase",
-                      fontWeight: "bold",
-                      fontSize: 14,
-                      letterSpacing: "1px"
-                    }}
-                  >
-                    Fitted
-                  </div>
-                </MenuItem>
-              )}
-              <hr />
-            </Menu>
+  // useEffect(() => {
+  //   setGlobalVariable({gender:gender, clothing:clothingType, search:searchType, minstar:aboveStar})
+  // },[gender, clothingType, searchType, aboveStar])
 
-            <Menu>
-              <SubMenu defaultOpen label={"Men/Women"}>
-                <MenuItem icon={Genderset("m")} onClick={() => gender == "m" ? setgender(null) : setgender("m")} className='menustyling'>Men </MenuItem>
-                <MenuItem icon={Genderset("w")} onClick={() => gender == "w" ? setgender(null) : setgender("w")} className='menustyling'>Women </MenuItem>
-              </SubMenu>
-              <SubMenu defaultOpen label={"Clothing Types"} >
-                <MenuItem icon={clothingset("T")} onClick={() => clothingType == "T" ? setclothingType(null) : setclothingType("T")} className='menustyling'>Tops </MenuItem>
-                <MenuItem icon={clothingset("B")} onClick={() => clothingType == "B" ? setclothingType(null) : setclothingType("B")} className='menustyling'>Bottoms </MenuItem>
-              </SubMenu>
-              <SubMenu defaultOpen label={"Search By"}>
-                <MenuItem icon={SearchBy("H")} onClick={() => searchType == "H" ? setsearchType(null) : setsearchType("H")} className='menustyling'>Hot/Trending</MenuItem>
-                <MenuItem icon={SearchBy("P")} onClick={() => searchType == "P" ? setsearchType(null) : setsearchType("P")} className='menustyling'>Popular</MenuItem>
-                <MenuItem icon={SearchBy("MR")} onClick={() => searchType == "MR" ? setsearchType(null) : setsearchType("MR")} className='menustyling'>Most Reviews</MenuItem>
-                <MenuItem icon={SearchBy("HR")} onClick={() => searchType == "HR" ? setsearchType(null) : setsearchType("HR")} className='menustyling'>Highest Rating</MenuItem>
-              </SubMenu>
-              <SubMenu defaultOpen label={"Advanced Search"} >
-                <MenuItem icon={StarRating("SR")} onClick={() => aboveStar == "SR" ? setaboveStar(null) : setaboveStar("SR")} className='menustyling'>Above Star rating</MenuItem>
-              </SubMenu>
-            </Menu>
-          </main>
-        </Sidebar>
-      </div>
-    </>
+  function updateRequest(){
+    console.log("update global ran")
+    setGlobalVariable({gender:gender, clothing:clothingType, search:searchType, minstar:aboveStar})
+  }
+
+  return(
+    <div className="sidebar">
+      <Sidebar
+        className={`app  ${toggled ? "toggled" : ""}`}
+        // className="sidebar"
+        // style={{ height: "100%", position: "absolute" }}
+        collapsed={collapsed}
+        toggled={toggled}
+        handleToggleSidebar={handleToggleSidebar}
+        handleCollapsedChange={handleCollapsedChange}
+      >
+        <main>
+          <Menu>
+            {collapsed ? (
+              <MenuItem
+                icon={<FiChevronsRight />}
+                onClick={handleCollapsedChange}
+              ></MenuItem>
+            ) : (
+              <MenuItem
+                suffix={<FiChevronsLeft />}
+                onClick={handleCollapsedChange}
+              >
+                <div
+                  style={{
+                    padding: "9px",
+                    // textTransform: "uppercase",
+                    fontWeight: "bold",
+                    fontSize: 14,
+                    letterSpacing: "1px"
+                  }}
+                >
+                  Fitted
+                </div>
+              </MenuItem>
+            )}
+            <hr />
+          </Menu>
+
+          <Menu>
+            <SubMenu defaultOpen label={"Men/Women"}>
+              <MenuItem icon={Genderset("M")} onClick={() => gender == "M" ? setgender(null) : setgender("M")} className='menustyling'>Men </MenuItem>
+              <MenuItem icon={Genderset("W")} onClick={() => gender == "W" ? setgender(null) : setgender("W")} className='menustyling'>Women </MenuItem>
+            </SubMenu>
+            <SubMenu defaultOpen label={"Clothing Types"} >
+              <MenuItem icon={clothingset("T")} onClick={() => clothingType == "T" ? setclothingType(null) : setclothingType("T")} className='menustyling'>Tops </MenuItem>
+              <MenuItem icon={clothingset("B")} onClick={() => clothingType == "B" ? setclothingType(null) : setclothingType("B")} className='menustyling'>Bottoms </MenuItem>
+            </SubMenu>
+            <SubMenu defaultOpen label={"Search By"}>
+              <MenuItem icon={SearchBy("H")} onClick={() => searchType == "H" ? setsearchType(null) : setsearchType("H")} className='menustyling'>Hot/Trending</MenuItem>
+              <MenuItem icon={SearchBy("P")} onClick={() => searchType == "P" ? setsearchType(null) : setsearchType("P")} className='menustyling'>Popular</MenuItem>
+              <MenuItem icon={SearchBy("MR")} onClick={() => searchType == "MR" ? setsearchType(null) : setsearchType("MR")} className='menustyling'>Most Reviews</MenuItem>
+              <MenuItem icon={SearchBy("HR")} onClick={() => searchType == "HR" ? setsearchType(null) : setsearchType("HR")} className='menustyling'>Highest Rating</MenuItem>
+            </SubMenu>
+            <SubMenu defaultOpen label={"Advanced Search"} >
+              <MenuItem icon={StarRating("SR")} onClick={() => aboveStar == "SR" ? setaboveStar(null) : setaboveStar("SR")} className='menustyling'>Above Star rating</MenuItem>
+            </SubMenu>
+            <button onClick={updateRequest} className='updateButton'>Search</button>
+          </Menu>
+        </main>
+      </Sidebar>
+    </div>
   )
 }
 

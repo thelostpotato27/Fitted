@@ -20,10 +20,11 @@ function ReviewPopulator(){
 
 
   useEffect(() => {
-    fetchqueryData(5).then((fetched) => {
+    console.log("global var update calls fetchquery again")
+    fetchqueryData(5, globalVariable).then((fetched) => {
       setData(fetched)
     })
-  }, []);
+  }, [globalVariable]);
 
   function combineURL(urlName) {
     return `/Reviews/${urlName.company}-${urlName.name}`
@@ -31,16 +32,14 @@ function ReviewPopulator(){
   
   if(!loading && (data[0] != undefined)) {
     return(
-      <>
-        <div className='preview-img'>
-          {data.map((element) => (
-            <Link to= {combineURL(element)}>
-              <Item_preview data = {element}/>
-            </Link>
-            
-          ))}
-        </div>
-      </>
+      <div className='preview-img'>
+        {data.map((element) => (
+          <Link to= {combineURL(element)}>
+            <Item_preview data = {element}/>
+          </Link>
+          
+        ))}
+      </div>
     )
   }else{
     console.log("currently loading")

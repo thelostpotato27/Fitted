@@ -6,6 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, signOut  } from "firebase/auth
 
 function UserPage(){
   const { globalVariable, setGlobalVariable } = useGlobalContext();
+  const [userimg, setuserimg] = useState(null)
   console.log("user page current user: ", globalVariable)
   function callSignout(){
     signOut(auth).then(() => {
@@ -15,11 +16,16 @@ function UserPage(){
     });
   }
   console.log("img data: ",globalVariable)
+  useEffect(() => {
+    if(globalVariable != null){
+      setuserimg(globalVariable.photoURL.replace(/['"]/g,''))
+    }
+  }, globalVariable)
 
   if (globalVariable) {
     return(
       <div>
-        <img src={globalVariable.photoURL.replace(/['"]/g,'')}></img>
+        <img src={userimg}></img>
         <p>Hello temp for now please and thank you</p>
         <button onClick={callSignout}>Sign Out</button>
       </div>
