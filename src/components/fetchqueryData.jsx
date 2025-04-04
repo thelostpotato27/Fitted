@@ -1,6 +1,6 @@
 import {imgDB, txtDB } from "../firebaseConfig"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
-import { collection, doc, setDoc, query, limit, getDocs  } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDocs, orderBy  } from "firebase/firestore"
 import React, { useState, useEffect } from 'react';
 
 
@@ -17,7 +17,7 @@ async function fetchqueryData(num_fetch, searchParams) {
   async function getReviewdata(querySnapshot){
     querySnapshot.forEach((doc) => {
       const allreviews = collection(txtDB, "Clothing-item", doc.id, "reviews");
-      const firstReview = query(allreviews, limit(1));
+      const firstReview = query(allreviews, orderBy("likes"), orderBy("rating", "desc"),  limit(1));
       getReviewarr = [...getReviewarr, {reviewdata: doc.data(), firstreview: firstReview}];
     })
   }

@@ -85,13 +85,15 @@ function Img_input(){
       image: imgID,
       rating: stars,
       timestamp: Date.now(),
-      user: globalVariable.uid
+      user: globalVariable.uid,
+      likes: 1
     });
 
     setDoc(doc(txtDB, "User-data", globalVariable.uid, "my-reviews", reviewID), {
       clothingID: clothingID,
       reviewID: reviewID
     })
+
     setShowPopup(1)
     setName('')
     setUrl('')

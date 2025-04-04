@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router";
 import fetchClothingData from '../components/clothingData';
 import './AutogenReviewpage.css'
 import Input_review from '../components/review-input'
+import { BsHandThumbsUpFill } from "react-icons/bs";
 
 function ReviewsPage(inputVars) {
     let params = useParams()
@@ -33,6 +34,7 @@ function ReviewsPage(inputVars) {
                 {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
                 {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
                 {review ? <p>{review.review}</p> : <p>Loading...</p>}
+                <button><BsHandThumbsUpFill/></button>
               </div>
             ))}
               

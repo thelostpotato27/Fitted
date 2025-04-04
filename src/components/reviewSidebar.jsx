@@ -17,8 +17,6 @@ import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import { BiCheckbox, BiCheckboxChecked  } from "react-icons/bi";
 
 
-
-
 function ReviewSidebar(){
   const { globalVariable, setGlobalVariable } = useReviewGlobalContext();
   const [collapsed, setCollapsed] = useState(false);

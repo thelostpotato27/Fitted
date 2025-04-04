@@ -4,7 +4,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {imgDB, txtDB, auth } from "../firebaseConfig"
 import { useParams } from "react-router";
 import ReactCrop, {convertToPixelCrop} from 'react-image-crop'
-import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc, getDoc } from "firebase/firestore"
 import { v4 } from "uuid"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Rating from '@mui/material/Rating';
@@ -115,13 +115,30 @@ function Input_review(){
     })
 
     const collectionRef = collection(txtDB, "Clothing-item", `${params.pageName}`, "reviews")
-    addDoc(collectionRef, {
+    const docRef = await addDoc(collectionRef, {
       review: review,
       image: imgID,
       rating: stars,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      user: globalVariable.uid,
+      likes: 1
     })
-    
+
+    const clothingdocRef = doc(txtDB, "Clothing-item",`${params.pageName}`)
+    const clothingdocsnap = await getDoc(clothingdocRef)
+    const docData = clothingdocsnap.data()
+    const newstarAvg = ((docData.staravg * docData.reviewnum) + stars) / (docData.reviewnum + 1)
+    const newreviewnum = docData.reviewnum + 1
+    await updateDoc(clothingdocRef, {
+      staravg: newstarAvg,
+      reviewnum: newreviewnum
+    })
+
+
+    setDoc(doc(txtDB, "User-data", globalVariable.uid, "my-reviews", docRef.id), {
+      clothingID: `${params.pageName}`,
+      reviewID: docRef.id
+    })
     
     setReview('')
     setsrc('')

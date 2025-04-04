@@ -6,7 +6,6 @@ function Item_preview(vars){
   const expected_types = ["name", "company", "ethnicity", "image"]
   // await setimageData(vars.data)
 
-
   expected_types.forEach(element => {
     if (!(element in imageData)){
       setimageData({element:"temp", ...imageData})

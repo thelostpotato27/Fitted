@@ -27,6 +27,7 @@ function ReviewPopulator(){
   }, [globalVariable]);
 
   function combineURL(urlName) {
+    console.log("urlname output: ", urlName)
     return `/Reviews/${urlName.company}-${urlName.name}`
   }
   
