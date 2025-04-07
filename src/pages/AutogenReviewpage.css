@@ -29,3 +29,7 @@
 .autogen-item img{
     height: 300px
 }
+
+.clicked-thumb{
+    color: green;
+}

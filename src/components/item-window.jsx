@@ -46,7 +46,7 @@ function Item(props) {
   return (
     <>
       <div className='img-background'>
-        {imageURL ? <img src={imageURL} alt="item image" /> : <p>Loading...</p>}
+        {imageURL ? <img src={imageURL} className='home-img' alt="item image" /> : <p>Loading...</p>}
       </div>
       <div className='line-margin'>
         <h3>{data_retrieval.name}</h3>

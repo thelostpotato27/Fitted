@@ -24,8 +24,9 @@ async function fetchClothingData(page_name) {
   async function parseReviewdata(reviews){
     results = await getDocs(reviews.allreviews)
     results.forEach((doc1) => {
-      QsnapshottoDoc = [...QsnapshottoDoc, doc1.data()]
+      QsnapshottoDoc = [...QsnapshottoDoc, {...doc1.data(), docID:doc1.id}]
     })
+    
     const promises2 = QsnapshottoDoc.map((reviewSnapshot) => getDownloadURL(ref(imgDB, `Imgs/${reviewSnapshot.image}`)))
     results2 = await Promise.all(promises2);
   }
@@ -37,7 +38,7 @@ async function fetchClothingData(page_name) {
   finalresults = tempArray.map((data, index) =>
     ({...data, image: results2[index]})
   );
-
+  console.log("fetch clothing data: ", finalresults)
   return [finalresults, getReviewarr.generalData];
 }
 
