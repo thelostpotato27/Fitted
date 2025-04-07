@@ -6,7 +6,7 @@ import './AutogenReviewpage.css'
 import Input_review from '../components/review-input'
 import { BsHandThumbsUpFill } from "react-icons/bs";
 import {useGlobalContext} from '../components/global_context'
-import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc, getDoc } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc, getDoc, increment } from "firebase/firestore"
 
 
 function ReviewsPage(inputVars) {
@@ -16,6 +16,7 @@ function ReviewsPage(inputVars) {
     const [loading, setLoading] = useState(true);
     const [likes, setlikes] = useState({});
     const [userlikes, setuserlikes] = useState(null);
+    const [_, forceRender] = useState(0);
     const { globalVariable, setGlobalVariable } = useGlobalContext();
 
     // console.log("global var in autogen",globalVariable)
@@ -74,13 +75,21 @@ function ReviewsPage(inputVars) {
       return (<BsHandThumbsUpFill/>)
     }
 
-    const setMap = (key) => {
+    const setMap = (key, review) => {
       const boolflip = !likes[key]
       setlikes(prevState => ({
         ... prevState,
         [key]:boolflip
       }))
+      let incrementamnt = 0
+      if (boolflip){
+        incrementamnt = 1
+      }else{
+        incrementamnt = -1
+      }
       setDoc(doc(txtDB, "User-data", `${globalVariable.uid}`,`${params.pageName}`, "Likes"), {[key]: boolflip}, {merge: true})
+      setDoc(doc(txtDB, "Clothing-item", `${params.pageName}`, "reviews", key), {likes: increment(incrementamnt)}, {merge: true})
+      review.likes += incrementamnt
     }
 
     if (!loading){
@@ -93,7 +102,11 @@ function ReviewsPage(inputVars) {
                 {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
                 {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
                 {review ? <p>{review.review}</p> : <p>Loading...</p>}
-                <button onClick={() => setMap(review.docID)}>{Genderset(likes[review.docID])}</button>
+                <div className='horizontal'>
+                  <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
+                  <p>{review.likes}</p>
+                </div>
+                
               </div>
             ))}
               
