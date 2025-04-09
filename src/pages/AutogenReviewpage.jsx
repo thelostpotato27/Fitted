@@ -99,12 +99,14 @@ function ReviewsPage(inputVars) {
           <div className='autogen-layout'>
             {reviews.map(review => (
               <div className='autogen-item'>
-                {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
-                {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
                 {review ? <p>{review.review}</p> : <p>Loading...</p>}
+                {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
                 <div className='horizontal'>
-                  <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
-                  <p>{review.likes}</p>
+                  {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
+                  <div className='like-orginize'>
+                    <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
+                    <p>{review.likes}</p>
+                  </div> 
                 </div>
                 
               </div>

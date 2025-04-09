@@ -18,6 +18,7 @@ function Img_input(){
   const [name,setName] = useState('')
   const [url,setUrl] = useState('')
   const [review,setReview] = useState('')
+  const [reviewheader,setReviewheader] = useState('')
   const [company,setCompany] = useState('')
   const [src,setsrc] = useState('')
   const [img,setimg] = useState(null)
@@ -32,7 +33,7 @@ function Img_input(){
     x: 0,
     y: 0,
     width: 75,
-    height: 100
+    height: 80
     })
 
   const prepUpload = (e) =>{
@@ -60,7 +61,7 @@ function Img_input(){
     console.log("img uploader running")
     e.preventDefault();
 
-    if(name == '' || url == '' || review == '' || company == '' || src == '' || stars == '' || cropfile == null){
+    if(name == '' || url == '' || reviewheader == '' || review == '' || company == '' || src == '' || stars == '' || cropfile == null){
       console.log("return for some reason")
       return
     }
@@ -81,6 +82,7 @@ function Img_input(){
     });
     const reviewID = v4()
     setDoc(doc(txtDB, "Clothing-item", clothingID, "reviews", reviewID), {
+      reviewheader: reviewheader,
       review: review,
       image: imgID,
       rating: stars,
@@ -98,6 +100,7 @@ function Img_input(){
     setName('')
     setUrl('')
     setReview('')
+    setReviewheader('')
     setCompany('')
     setsrc('')
     setStars(3)
@@ -107,7 +110,7 @@ function Img_input(){
       x: 0,
       y: 0,
       width: 75,
-      height: 100
+      height: 80
       })
     console.log("img uploader fin")
   }
@@ -155,53 +158,64 @@ function Img_input(){
 
   if(globalVariable != null){
     return(
-      <div >
-        <h3>Item Name</h3>
-        <input value={name} onChange={(e)=>setName(e.target.value)} />
-
-        <h3>Company</h3>
-        <input value={company} onChange={(e)=>setCompany(e.target.value)} />
-
-        <h3>Item Review</h3>
-        <input value={review} onChange={(e)=>setReview(e.target.value)} />
-        <h3></h3>
-        <div>
-          <Rating
-            name="hover-feedback"
-            stars={stars}
-            precision={0.5}
-            getLabelText={getLabelText}
-            onChange={(event, newValue) => {
-              setStars(newValue);
-            }}
-            onChangeActive={(event, newHover) => {
-              setHover(newHover);
-            }}
-            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-          />
-          {stars !== null &&(
-            <div>{labels[hover !== -1 ? hover : stars]}</div>
-          )}
+      <div className='background-color'>
+        <h2 className='title-color'>Review Input Form</h2>
+        <div className='horizontal'>
+          <div>
+            <h3>Item Name</h3>
+            <input value={name} onChange={(e)=>setName(e.target.value)} placeholder='Item Name'/>
+          </div>
+          <div>
+            <h3>Company</h3>
+            <input value={company} onChange={(e)=>setCompany(e.target.value)} placeholder='Company Name'/>
+          </div>
         </div>
-
-        <h3>Item Link</h3>
-        <input value={url} onChange={(e)=>setUrl(e.target.value)} />
-
-        <h3>Image</h3>
-        <div className='centered-div'>
-          <input type="file" onChange={(e)=>prepUpload(e)}/>
-          {src && (
-            <ReactCrop 
-              src={src}
-              crop={crop} 
-              // onImageLoad={setimg} 
-              onComplete={displayCrop} 
-              onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-              aspect={.75}
-            >
-              <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
-            </ReactCrop>
-          )}
+        <h3>Item Review</h3>
+        <input value={reviewheader} onChange={(e)=>setReviewheader(e.target.value)} className="review-header" placeholder='Review Title'/>
+        <h3></h3>
+        <textarea value={review} onChange={(e)=>setReview(e.target.value)} className="textbox" placeholder='Review'/>
+        
+        <div className='horizontal'>
+          <div className='aligning-top'>
+            <h3>Item Link</h3>
+            <input value={url} onChange={(e)=>setUrl(e.target.value)} placeholder='Item Link'/>
+            <h3></h3>
+            <div>
+              <Rating
+                name="hover-feedback"
+                stars={stars}
+                precision={0.5}
+                getLabelText={getLabelText}
+                onChange={(event, newValue) => {
+                  setStars(newValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHover(newHover);
+                }}
+                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+              />
+              {stars !== null &&(
+                <div>{labels[hover !== -1 ? hover : stars]}</div>
+              )}
+            </div>
+          </div>
+          <div className='aligning-top'>
+            <h3>Image</h3>
+            <div className='centered-div'>
+              <input type="file" onChange={(e)=>prepUpload(e)}/>
+              {src && (
+                <ReactCrop 
+                  src={src}
+                  crop={crop} 
+                  onComplete={displayCrop} 
+                  onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
+                  aspect={0.9375}
+                >
+                  <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
+                </ReactCrop>
+              )}
+            </div>
+          </div>
         </div>
         <div>
           {crop && (
@@ -225,8 +239,8 @@ function Img_input(){
         {showPopup && (
           <div className="popup">
             <div className="popup-inner">
-              <h2>Pop-up Content</h2>
-              <p>This is a simple pop-up example.</p>
+              <h2>Thank you for reviewing!</h2>
+              {/* <p>This is a simple pop-up example.</p> */}
               <button onClick={togglePopup}>Close</button>
             </div>
           </div>

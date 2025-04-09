@@ -1,10 +1,79 @@
 .centered-div {
-    display: flex;
-    justify-content: center; 
-  }
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
 
 .preview-img {
   width: 50vw;
-
 }
+
+.review-header{
+  width: 30vw;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+}
+
+.review-body{
+  width: 30vw;
+  height: 10vh;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+}
+
+.textbox {
+  /* outline: 4px; */
+  width: 30vw;
+  min-height: 10vh; /* Minimum height */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  resize: vertical; /* Prevent manual resizing */
+  overflow-wrap: break-word; /* Ensures words wrap correctly */
+  word-wrap: break-word;
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
+}
+
+.background-color{
+  background-color: rgb(255, 237, 216);
+  padding: 30px;
+  padding-bottom: 40px;
+}
+
+.horizontal{
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal div input{
+  width: 13vw;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+}
+
+.aligning-top{
+  align-self: flex-start;
+}
+
+.height-matcher{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-color{
+  color: black;
+}
+
+/* .debug-color{
+  background-color: blue;
+  width: 250px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
