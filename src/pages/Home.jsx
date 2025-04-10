@@ -1,7 +1,7 @@
 import './Home.css'
 import viteLogo from '/vite.svg'
 import Item from '../components/item-window'
-// import {app} from "../firebaseConfig.jsx"
+import "@fontsource/noto-sans/800.css";
 import React, { useEffect, useState } from "react";
 
 // import {imgDB, txtDB } from "../firebaseConfig";
@@ -21,12 +21,10 @@ function Home(){
       <div className='main'>
         <div className='intro'>
           <div className='intro-left'>
-            <h1>Intro Home Page</h1>
-            <p>Some info on Fitted</p>
+            <h1 className='left-text'>DISCOVER CLOTHING THAT FITS YOU PERFECTLY</h1>
+            <p className='left-text'>Powered by real reviews from real people. Our community-driven platform focuses on Japanese fashion, helping you find the best fit based on shared body sizes and honest feedback.</p>
           </div>
-          <div className='intro-right'>
-            <img src={viteLogo} alt="placeholder image" />
-          </div>
+          <img src={viteLogo} alt="placeholder image" className='intro-right'/>
         </div>
       </div>
 

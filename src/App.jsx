@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router";
+import "@fontsource/noto-sans"
 import {app} from "./firebaseConfig"
 import Header from './components/header'
 import Home from './pages/home'
