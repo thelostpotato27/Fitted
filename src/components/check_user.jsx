@@ -1,23 +1,30 @@
 import {useGlobalContext} from "./global_context";
-import { collection, doc, setDoc, query, limit, getDoc  } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDoc, updateDoc, deleteField } from "firebase/firestore"
 import {imgDB, txtDB } from "../firebaseConfig"
 
 
-async function userSetup(userdata) {
-  if(userdata != null){
-    
+async function userSetup(userdata, username) {
+  const docref = doc(txtDB, "User-data", userdata.uid)
+  const docsnap = await getDoc(docref)
+  const allusersdocref = doc(txtDB, "Usernames", "Usernames")
+  let prev_name = ""
+
+  if(docsnap.exists() && docsnap.data().hasOwnProperty("username")){
+    prev_name = docsnap.data()["username"]
+
+    await updateDoc(allusersdocref, {
+      [prev_name]: deleteField(),
+      [username]: true
+    });
+  }else{
+    await updateDoc(allusersdocref, {
+      [username]: true
+    });
   }
-  const userdoc = doc(txtDB, "User-data", "temp_name")
-  const userdocquery = query(userdoc)
-  const querysnapshot = await getDoc(userdocquery)
-  console.log("running user setup almost done")
-  console.log("user info query: ",querysnapshot.data())
-  if(querysnapshot.data() == null){
-    console.log("user data doesn't exist, setting up")
-    setDoc(doc(txtDB, "User-data", userdata.uid), {
-        
-    })
-  }
+
+  setDoc(docref, {
+      username: username
+  }, {merge: true})
 }
 
 export default userSetup

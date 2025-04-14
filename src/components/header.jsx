@@ -5,6 +5,8 @@ import userAuth from './auth_state_listener.jsx'
 import {app, auth} from "../firebaseConfig"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {useGlobalContext} from "./global_context";
+// Supports weights 200-900
+import '@fontsource-variable/mulish';
 
 
 function Header(){  
@@ -28,7 +30,7 @@ function Header(){
     <>
       <nav className="header">
         <div className="header-left">
-          <Link to="/" > Home </Link>
+          <Link to="/" className='home-logo'> <span className='green-header-highlight'>Fitted</span> </Link>
         </div>
         <div className="header-right">
           <Link to="/Reviews" > Reviews </Link>

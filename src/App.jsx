@@ -15,6 +15,7 @@ import LoginPage from './pages/Login'
 import EmailLoginPage from './pages/EmailLogin'
 import EmailSignupPage from './pages/EmailSignup'
 import UserPage from './pages/User'
+import ProfileCreationPage from './pages/profile-creation.jsx'
 import {GlobalProvider} from "./components/global_context";
 
 
@@ -35,6 +36,7 @@ function App() {
             <Route path="Login/email" element={<EmailLoginPage />} />
             <Route path="Login/signupemail" element={<EmailSignupPage />} />
             <Route path="User" element={<UserPage/>} />
+            <Route path="Usersetup" element={<ProfileCreationPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>

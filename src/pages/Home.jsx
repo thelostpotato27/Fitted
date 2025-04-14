@@ -21,7 +21,7 @@ function Home(){
       <div className='main'>
         <div className='intro'>
           <div className='intro-left'>
-            <h1 className='left-text'>DISCOVER CLOTHING THAT FITS YOU PERFECTLY</h1>
+            <h1 className='left-text'>DISCOVER <span className='green-highlight'>CLOTHING</span> THAT FITS YOU <span className='green-highlight'>PERFECTLY</span></h1>
             <p className='left-text'>Powered by real reviews from real people. Our community-driven platform focuses on Japanese fashion, helping you find the best fit based on shared body sizes and honest feedback.</p>
           </div>
           <img src={viteLogo} alt="placeholder image" className='intro-right'/>
