@@ -3,7 +3,7 @@
     padding-top: 50px;
     height: 100vh;
     width: 95vw;
-    background-color: rgb(166, 233, 112);
+    /* background-color: rgb(166, 233, 112); */
 }
 
 
@@ -11,7 +11,7 @@
     width: 250px;
     height: 100vh;  /* Sets the height of the sidebar to cover the entire viewport */
     color: rgb(172, 7, 187);  /* Sets the text color */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);  /* Adds a shadow effect to the right of the sidebar */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     position: fixed;
     top: 5;
     left: 0;
@@ -21,5 +21,5 @@
 .Populator {
     margin-left: 250px;
     flex-grow: 1;
-    background-color: rgb(13, 99, 170);
+    /* background-color: rgb(170, 13, 170); */
 }

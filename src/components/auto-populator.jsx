@@ -21,7 +21,7 @@ function ReviewPopulator(){
 
   useEffect(() => {
     console.log("global var update calls fetchquery again")
-    fetchqueryData(5, globalVariable).then((fetched) => {
+    fetchqueryData(6, globalVariable).then((fetched) => {
       setData(fetched)
     })
   }, [globalVariable]);
@@ -33,12 +33,11 @@ function ReviewPopulator(){
   
   if(!loading && (data[0] != undefined)) {
     return(
-      <div className='preview-img'>
+      <div className='preview-img-container'>
         {data.map((element) => (
           <Link to= {combineURL(element)}>
             <Item_preview data = {element}/>
           </Link>
-          
         ))}
       </div>
     )

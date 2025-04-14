@@ -104,8 +104,8 @@ function ReviewsPage(inputVars) {
                 <div className='horizontal'>
                   {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
                   <div className='like-orginize'>
-                    <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
                     <p>{review.likes}</p>
+                    <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
                   </div> 
                 </div>
                 

@@ -1,8 +1,13 @@
-.preview-img{
-    flex-direction: row;
-    /* flex: 0 1 auto; */
-    /* background-color: brown; */
+.preview-img-container{
+    /* flex-direction: row; */
     flex-wrap: wrap;
+    /* flex-flow: row wrap; */
     display: flex;
-    width: 100%;
+    justify-content: left;
+    width: 82vw;
+    /* background-color: black; */
+}
+
+.preview-img-container a{
+    color: brown;
 }

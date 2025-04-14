@@ -104,6 +104,7 @@ function Img_input(){
     setCompany('')
     setsrc('')
     setStars(3)
+    setHover(3)
     setcropfile(null)
     setCrop({
       unit: 'px',

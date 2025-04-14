@@ -18,7 +18,6 @@ function Reviews(){
         <div className="Populator">
           <ReviewPopulator/>
         </div>
-        
       </ReviewGlobalProvider>
     </div>
   )

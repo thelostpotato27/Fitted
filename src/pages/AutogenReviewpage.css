@@ -25,16 +25,19 @@
     margin: 1vw;
     border: 10px aqua;
     padding: 1vw;
+    width: 18vw;
 }
 
 .autogen-item img{
     /* height: 400px; */
-    width: 18vw
+    width: 18vw;
+    /* background-color: black; */
 }
 
 .autogen-item p{
     text-align: left;
     /* background-color: aliceblue; */
+    width: 18vw;
 }
 
 .clicked-thumb{
@@ -46,14 +49,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    /* width: 18vw; */
     width: 100%;
-    /* gap: 20px; */
+    /* background-color: blueviolet; */
 }
 
 .like-orginize{
     display: flex;
     flex-direction: row;
     gap: 20px;
+    /* background-color: brown; */
+    width: 100px;
 }
 
   
