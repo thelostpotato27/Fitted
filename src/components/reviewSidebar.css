@@ -1,7 +1,7 @@
 .sidebar {
   width: 250px;
   height: 100vh;  /* Sets the height of the sidebar to cover the entire viewport */
-  color: rgb(172, 7, 187);  /* Sets the text color */
+  color: rgb(0, 0, 0); 
   box-shadow: 2px 0 5px rgba(0,0,0,0.5);  /* Adds a shadow effect to the right of the sidebar */
   position: fixed;
   top: 5;

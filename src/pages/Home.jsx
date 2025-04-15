@@ -3,7 +3,7 @@ import viteLogo from '/vite.svg'
 import Item from '../components/item-window'
 import "@fontsource/noto-sans/800.css";
 import React, { useEffect, useState } from "react";
-import ReviewPopulator from '../components/auto-populator.jsx'
+import HomePopulator from '../components/home-display.jsx'
 import {ReviewGlobalProvider} from '../components/global_context.jsx'
 
 // import {imgDB, txtDB } from "../firebaseConfig";
@@ -29,9 +29,12 @@ function Home(){
           <img src={viteLogo} alt="placeholder image" className='intro-right'/>
         </div>
       </div>
-      <ReviewGlobalProvider>
-        <ReviewPopulator/>
-      </ReviewGlobalProvider>
+      <div className='display-items'>
+        <ReviewGlobalProvider>
+          <HomePopulator/>
+        </ReviewGlobalProvider>
+      </div>
+      
       
     </>
   )

@@ -1,0 +1,15 @@
+.preview-img-container-home{
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    /* flex-flow: row wrap; */
+    display: flex;
+    justify-content: left;
+    width: 74vw;
+    /* background-color: rgb(117, 180, 15); */
+    justify-content: space-between;
+
+}
+
+.preview-img-container-home a{
+    color: rgb(26, 122, 58);
+}

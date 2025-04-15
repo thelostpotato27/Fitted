@@ -91,8 +91,8 @@ function ReviewSidebar(){
               ></MenuItem>
             ) : (
               <MenuItem
-                suffix={<FiChevronsLeft />}
-                onClick={handleCollapsedChange}
+                // suffix={<FiChevronsLeft />}
+                // onClick={handleCollapsedChange}
               >
                 <div
                   style={{
@@ -111,21 +111,21 @@ function ReviewSidebar(){
           </Menu>
 
           <Menu>
-            <SubMenu defaultOpen label={"Men/Women"}>
+            <SubMenu defaultClose label={"Men/Women"}>
               <MenuItem icon={Genderset("M")} onClick={() => gender == "M" ? setgender(null) : setgender("M")} className='menustyling'>Men </MenuItem>
               <MenuItem icon={Genderset("W")} onClick={() => gender == "W" ? setgender(null) : setgender("W")} className='menustyling'>Women </MenuItem>
             </SubMenu>
-            <SubMenu defaultOpen label={"Clothing Types"} >
+            <SubMenu defaultClose label={"Clothing Types"} >
               <MenuItem icon={clothingset("T")} onClick={() => clothingType == "T" ? setclothingType(null) : setclothingType("T")} className='menustyling'>Tops </MenuItem>
               <MenuItem icon={clothingset("B")} onClick={() => clothingType == "B" ? setclothingType(null) : setclothingType("B")} className='menustyling'>Bottoms </MenuItem>
             </SubMenu>
-            <SubMenu defaultOpen label={"Search By"}>
+            <SubMenu defaultClose label={"Search By"}>
               <MenuItem icon={SearchBy("H")} onClick={() => searchType == "H" ? setsearchType(null) : setsearchType("H")} className='menustyling'>Hot/Trending</MenuItem>
               <MenuItem icon={SearchBy("P")} onClick={() => searchType == "P" ? setsearchType(null) : setsearchType("P")} className='menustyling'>Popular</MenuItem>
               <MenuItem icon={SearchBy("MR")} onClick={() => searchType == "MR" ? setsearchType(null) : setsearchType("MR")} className='menustyling'>Most Reviews</MenuItem>
               <MenuItem icon={SearchBy("HR")} onClick={() => searchType == "HR" ? setsearchType(null) : setsearchType("HR")} className='menustyling'>Highest Rating</MenuItem>
             </SubMenu>
-            <SubMenu defaultOpen label={"Advanced Search"} >
+            <SubMenu defaultClose label={"Advanced Search"} >
               <MenuItem icon={StarRating("SR")} onClick={() => aboveStar == "SR" ? setaboveStar(null) : setaboveStar("SR")} className='menustyling'>Above Star rating</MenuItem>
             </SubMenu>
             <button onClick={updateRequest} className='updateButton'>Search</button>
