@@ -5,9 +5,10 @@
     display: flex;
     justify-content: left;
     width: 82vw;
-    /* background-color: black; */
+    /* background-color: rgb(169, 238, 255); */
+    border-left: 1px solid #8b8b8b;
 }
 
 .preview-img-container a{
-    color: brown;
+    color: rgb(236, 150, 150);
 }

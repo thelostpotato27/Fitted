@@ -59,10 +59,51 @@ function ProfileCreationPage(){
     )
   }else{
     return(
-      <div>
-        <input className="input-style" value={username} onChange={(e)=>setusername(e.target.value)} placeholder="Username"/>
-        <button onClick={calluserSetup}>Set Your Username</button>
-        <div className="name-availability-orginization">{displayAvailability(nameexists)}</div>
+      <div className="input-style">
+        <h1>Profile Creation</h1>
+        <div className="horizontal-profile-create">
+          <div className="usersetup-user-input">
+            <h3>Username:</h3>
+            <input value={username} onChange={(e)=>setusername(e.target.value)} placeholder="Username"/>
+          </div>
+          <div className="name-availability-orginization">{displayAvailability(nameexists)}</div>
+        </div>
+        
+
+        <div className="usersetup-form-orginizer">
+          <div className="input-name">
+            <h3>Weight:</h3>
+            <input type="number" placeholder="Enter your weight"/>
+          </div>
+          <div className="input-name-right">
+            <h3>Height:</h3>
+            <input type="number" placeholder="Enter your height"/>
+          </div>
+        </div>
+
+        <div className="usersetup-form-orginizer">
+          <div className="input-name">
+            <h3>Shoulder:</h3>
+            <input type="number" placeholder="Enter your Shoulder Width"/>
+          </div>
+          <div className="input-name-right">
+            <h3>Chest:</h3>
+            <input type="number" placeholder="Enter your Chest size"/>
+          </div>
+        </div>
+
+        <div className="usersetup-form-orginizer">
+          <div className="input-name">
+            <h3>Waist:</h3>
+            <input type="number" placeholder="Enter your Waist"/>
+          </div>
+          <div className="input-name-right">
+            <h3>Hips:</h3>
+            <input type="number" placeholder="Enter your Hips"/>
+          </div>
+        </div>
+        
+        <button onClick={calluserSetup}>Create your Profile</button>
       </div>
     )
   }

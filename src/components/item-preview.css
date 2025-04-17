@@ -1,7 +1,10 @@
 .preview-background{
-    border-radius: 15px;
-    border-width: 5px;
+    border-radius: 0px;
+    /* border-width: 1px;
     border-style: solid;
+    border-color: #8b8b8b; */
+    border-bottom: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
 
     width: 300px;
     height: 400px;
