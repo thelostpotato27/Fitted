@@ -11,7 +11,6 @@ export const GlobalProvider = ({ children }) => {
     </GlobalContext.Provider>
   );
 };
-
 export const useGlobalContext = () => useContext(GlobalContext);
 
 
@@ -26,5 +25,4 @@ export const ReviewGlobalProvider = ({ children }) => {
     </ReviewGlobalContext.Provider>
   );
 };
-
 export const useReviewGlobalContext = () => useContext(ReviewGlobalContext);

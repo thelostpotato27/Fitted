@@ -45,7 +45,7 @@ function ReviewsPage(inputVars) {
 
     useEffect(() => {
       if (globalVariable != null){
-        const clothingdocRef = doc(txtDB, "User-data", `${globalVariable.uid}`,`${params.pageName}`, "Likes")
+        const clothingdocRef = doc(txtDB, "User-data", `${globalVariable.uid}`, "Likes",`${params.pageName}`)
         getDoc(clothingdocRef).then((clothingData) => {
           setuserlikes(clothingData.data())
           console.log("set userlikes ran: ", clothingData.data())
@@ -87,7 +87,7 @@ function ReviewsPage(inputVars) {
       }else{
         incrementamnt = -1
       }
-      setDoc(doc(txtDB, "User-data", `${globalVariable.uid}`,`${params.pageName}`, "Likes"), {[key]: boolflip}, {merge: true})
+      setDoc(doc(txtDB, "User-data", `${globalVariable.uid}`, "Likes",`${params.pageName}`), {[key]: boolflip}, {merge: true})
       setDoc(doc(txtDB, "Clothing-item", `${params.pageName}`, "reviews", key), {likes: increment(incrementamnt)}, {merge: true})
       review.likes += incrementamnt
     }
