@@ -1,0 +1,12 @@
+.centered-div-autogen-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    background-color: aquamarine;
+  }
+
+.input-class-autogen-review{
+    width: 30%;
+    height: 40px;
+}

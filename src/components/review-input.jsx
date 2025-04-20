@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import setCanvasPreview from "./crop_preview.js";
+import './review-input.css'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {imgDB, txtDB, auth } from "../firebaseConfig"
 import { useParams } from "react-router";
@@ -26,21 +27,9 @@ function Input_review(){
     x: 0,
     y: 0,
     width: 75,
-    height: 100
+    height: 80
   })
 
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/auth.user
-  //     const uid = user.uid;
-  //     console.log("review input user data: ", user)
-  //     // ...
-  //   } else {
-  //     // User is signed out
-  //     // ...
-  //   }
-  // });
 
   let params = useParams()
   const prepUpload = (e) =>{
@@ -149,15 +138,15 @@ function Input_review(){
       x: 0,
       y: 0,
       width: 75,
-      height: 100
+      height: 80
       })
     console.log("img uploader fin")
   }
   if(globalVariable != null){
     return(
-      <div>
+      <div className='centered-div-autogen-review'>
         <h3>Item Review</h3>
-        <input value={review} onChange={(e)=>setReview(e.target.value)} />
+        <input value={review} onChange={(e)=>setReview(e.target.value)} className='input-class-autogen-review'/>
         <h3></h3>
         <div>
           <Rating
@@ -178,7 +167,7 @@ function Input_review(){
           )}
         </div>
         <h3>Image</h3>
-        <div className='centered-div'>
+        <div>
           <input type="file" onChange={(e)=>prepUpload(e)} />
           {src && (
             <ReactCrop 
@@ -186,7 +175,7 @@ function Input_review(){
               crop={crop} 
               onComplete={displayCrop} 
               onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-              aspect={.75}
+              aspect={0.9375}
             >
               <img ref={imgRef} src={src} onLoad={setimg} style={{ height: '40vh' }}/>
             </ReactCrop>

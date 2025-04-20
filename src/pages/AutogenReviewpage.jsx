@@ -7,6 +7,7 @@ import Input_review from '../components/review-input'
 import { BsHandThumbsUpFill } from "react-icons/bs";
 import {useGlobalContext} from '../components/global_context'
 import { collection, doc, setDoc, query, limit, getDocs, where, updateDoc, addDoc, getDoc, increment } from "firebase/firestore"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 
 function ReviewsPage(inputVars) {
@@ -97,20 +98,27 @@ function ReviewsPage(inputVars) {
         <div className='autogen-page-layout'>
           <h2>Customer Reviews</h2>
           <div className='autogen-layout'>
-            {reviews.map(review => (
-              <div className='autogen-item'>
-                {review ? <p>{review.review}</p> : <p>Loading...</p>}
-                {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
-                <div className='horizontal'>
-                  {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
-                  <div className='like-orginize'>
-                    <p>{review.likes}</p>
-                    <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
-                  </div> 
-                </div>
-                
-              </div>
-            ))}
+            <ResponsiveMasonry columnsCountBreakPoints={{ 400: 1, 1000: 2, 1400: 3, 3000: 4}} className='background-debug'>
+              <Masonry gutter="20px">
+                {reviews.map(review => (
+                  <div className='autogen-item'>
+                    {console.log("review data in autogen page: ", review)}
+                    {review ? <p>{review.review}</p> : <p>Loading...</p>}
+                    {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
+                    <div className='horizontal'>
+                      {review ? <p>{review.rating} / 5</p> : <p>Loading...</p>}
+                      <div className='like-orginize'>
+                        <p>{review.likes}</p>
+                        <button onClick={() => setMap(review.docID, review)}>{Genderset(likes[review.docID])}</button>
+                      </div> 
+                    </div>
+                    
+                  </div>
+                  
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
+            
               
           </div>
           <div>
