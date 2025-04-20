@@ -1,9 +1,9 @@
-.preview-background{
+.preview-background-homepage{
     border-radius: 0px;
     /* border-width: 1px;
     border-style: solid;
     border-color: #8b8b8b; */
-    border-bottom: 1px solid #8b8b8b;
+    /* border-bottom: 1px solid #8b8b8b; */
     border-right: 1px solid #8b8b8b;
 
     width: 300px;
@@ -15,7 +15,7 @@
     /* background-color: blue; */
 }
 
-.preview-background img{
+.preview-background-homepage img{
     width: 262.5px;
     height: 280px;
     margin-top: 30px;
@@ -23,7 +23,7 @@
     display: block;
 }
 
-.line-margin{
+.line-margin-homepage{
     line-height: .4;
     float: left;
     margin-left: 10px;

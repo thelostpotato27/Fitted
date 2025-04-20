@@ -13,6 +13,7 @@ async function userAuth(){
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log("user auth use Effect pop")
     if(user != null && "uid" in user){
       const docref = doc(txtDB, "User-data", user.uid)
       getDoc(docref).then((data) => {
@@ -21,7 +22,7 @@ async function userAuth(){
         if ("username" in userData){
           // console.log("Userdata before put in global var: ", userData)
           setGlobalVariable({...globalVariable, ...userData})
-          // console.log("global variable after data set: ", globalVariable.username)
+          console.log("global variable after data set: ", globalVariable.username)
         }else{
           navigate('/usersetup')
         }
