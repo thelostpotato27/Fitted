@@ -1,0 +1,26 @@
+.User-page{
+    padding-top: 70px;
+}
+
+.User-Reviews{
+    background-color: aquamarine;
+    width: 80vw;
+}
+
+.user-autogen-item{
+    margin: 1vw;
+    border: 10px aqua;
+    padding: 1vw;
+    background-color: aliceblue;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.user-autogen-item img{
+    width: 100%;
+    height: auto;
+}

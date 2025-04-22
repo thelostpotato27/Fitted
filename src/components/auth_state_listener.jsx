@@ -15,12 +15,12 @@ async function userAuth(){
   useEffect(() => {
     console.log("user auth use Effect pop")
     if(user != null && "uid" in user){
-      const docref = doc(txtDB, "User-data", user.uid)
+      const docref = doc(txtDB, "User-data", `${user.uid}`)
       getDoc(docref).then((data) => {
         console.log("useEffect in auth state: ", data.data())
         const userData = data.data()
         if ("username" in userData){
-          // console.log("Userdata before put in global var: ", userData)
+          console.log("Userdata before put in global var: ", userData)
           setGlobalVariable({...globalVariable, ...userData})
           console.log("global variable after data set: ", globalVariable.username)
         }else{
