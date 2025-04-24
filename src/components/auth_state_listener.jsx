@@ -21,8 +21,8 @@ async function userAuth(){
         const userData = data.data()
         if ("username" in userData){
           console.log("Userdata before put in global var: ", userData)
-          setGlobalVariable({...globalVariable, ...userData})
-          console.log("global variable after data set: ", globalVariable.username)
+          setGlobalVariable({...user, ...userData})
+          // console.log("global variable after data set: ", globalVariable.username)
         }else{
           navigate('/usersetup')
         }
@@ -34,7 +34,8 @@ async function userAuth(){
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const userOut = user.uid;
-      setGlobalVariable(user)
+      // setGlobalVariable(user)
+      console.log("auth state change set here")
       setuser(user)
 
       // return user

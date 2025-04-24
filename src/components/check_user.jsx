@@ -3,14 +3,13 @@ import { collection, doc, setDoc, query, limit, getDoc, updateDoc, deleteField }
 import {imgDB, txtDB } from "../firebaseConfig"
 
 
-async function userSetup(userdata, username) {
+async function userSetup(userdata, username, height, weight, shoulder, chest, waist, hip) {
   const docref = doc(txtDB, "User-data", userdata.uid)
   const docsnap = await getDoc(docref)
   const allusersdocref = doc(txtDB, "Usernames", "Usernames")
-  let prev_name = ""
 
   if(docsnap.exists() && docsnap.data().hasOwnProperty("username")){
-    prev_name = docsnap.data()["username"]
+    const prev_name = docsnap.data()["username"]
 
     await updateDoc(allusersdocref, {
       [prev_name]: deleteField(),
@@ -22,9 +21,31 @@ async function userSetup(userdata, username) {
     });
   }
 
-  setDoc(docref, {
-      username: username
-  }, {merge: true})
+  let dataObj = {}
+  if (username != "" && username != null){
+    dataObj = {...dataObj, username: username}
+  }
+  if (height != "" && height != null){
+    dataObj = {...dataObj, height: height.slice(0, -1)}
+  }
+  if (weight != "" && weight != null){
+    dataObj = {...dataObj, weight: weight}
+  }
+  if (shoulder != "" && shoulder != null){
+    dataObj = {...dataObj, shoulder: shoulder}
+  }
+  if (chest != "" && chest != null){
+    dataObj = {...dataObj, chest: chest}
+  }
+  if (waist != "" && waist != null){
+    dataObj = {...dataObj, waist: waist}
+  }
+  if (hip != "" && hip != null){
+    dataObj = {...dataObj, hip: hip}
+  }
+  console.log("Data object being added: ", dataObj)
+
+  setDoc(docref, dataObj, {merge: true})
 }
 
 export default userSetup

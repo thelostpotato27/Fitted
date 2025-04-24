@@ -35,8 +35,11 @@ async function fetchClothingData(page_name) {
   await parseReviewdata(getReviewarr);
   
   const tempArray = QsnapshottoDoc.map(({image, ...data}) => data);
+  const userdatamap = tempArray.map((item) => getDoc(doc(txtDB, "User-data", item.user)))
+  const userdataPromise = await Promise.all(userdatamap)
+
   finalresults = tempArray.map((data, index) =>
-    ({...data, image: results2[index]})
+    ({...data, image: results2[index], username:userdataPromise[index].data().username})
   );
   console.log("fetch clothing data: ", finalresults)
   return [finalresults, getReviewarr.generalData];

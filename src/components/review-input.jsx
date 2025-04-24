@@ -16,6 +16,7 @@ import {useGlobalContext} from './global_context'
 
 function Input_review(){
   const { globalVariable, setGlobalVariable } = useGlobalContext();
+  const [reviewheader, setreviewheader] = useState('')
   const [review,setReview] = useState('')
   const [img,setimg] = useState(null)
   const [src,setsrc] = useState('')
@@ -30,7 +31,7 @@ function Input_review(){
     height: 80
   })
 
-
+  console.log("global var in input review: ", globalVariable)
   let params = useParams()
   const prepUpload = (e) =>{
     const file = e.target.files[0];
@@ -103,8 +104,18 @@ function Input_review(){
       console.log(data,"imgs")
     })
 
+    let sizingData = {}
+    if ("weight" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("height" in globalVariable){sizingData = {...sizingData, height: globalVariable.height}}
+    if ("shoulder" in globalVariable){sizingData = {...sizingData, shoulder: globalVariable.shoulder}}
+    if ("chest" in globalVariable){sizingData = {...sizingData, chest: globalVariable.chest}}
+    if ("waist" in globalVariable){sizingData = {...sizingData, waist: globalVariable.waist}}
+    if ("hip" in globalVariable){sizingData = {...sizingData, hip: globalVariable.hip}}
+
     const collectionRef = collection(txtDB, "Clothing-item", `${params.pageName}`, "reviews")
     const docRef = await addDoc(collectionRef, {
+      ...sizingData,
+      reviewheader: reviewheader,
       review: review,
       image: imgID,
       rating: stars,
@@ -146,7 +157,9 @@ function Input_review(){
     return(
       <div className='centered-div-autogen-review'>
         <h3>Item Review</h3>
-        <input value={review} onChange={(e)=>setReview(e.target.value)} className='input-class-autogen-review'/>
+        <input value={reviewheader} onChange={(e)=>setreviewheader(e.target.value)} className="review-header-reviewPage" placeholder='Review Title'/>
+        <h3></h3>
+        <textarea value={review} onChange={(e)=>setReview(e.target.value)} className='textbox-reviewPage' placeholder='Write your Review'/>
         <h3></h3>
         <div>
           <Rating

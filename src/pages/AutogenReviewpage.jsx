@@ -19,8 +19,6 @@ function ReviewsPage(inputVars) {
     const [userlikes, setuserlikes] = useState(null);
     const [_, forceRender] = useState(0);
     const { globalVariable, setGlobalVariable } = useGlobalContext();
-
-    // console.log("global var in autogen",globalVariable)
     
 
     useEffect(() => {
@@ -98,11 +96,15 @@ function ReviewsPage(inputVars) {
         <div className='autogen-page-layout'>
           <h2>Customer Reviews</h2>
           <div className='autogen-layout'>
-            <ResponsiveMasonry columnsCountBreakPoints={{ 400: 1, 1000: 2, 1400: 3, 3000: 4}} className='background-debug'>
+            <ResponsiveMasonry columnsCountBreakPoints={{ 400: 1, 800: 2, 1700: 3, 2400: 4}} className='background-debug'>
               <Masonry gutter="20px">
                 {reviews.map(review => (
                   <div className='autogen-item'>
                     {console.log("review data in autogen page: ", review)}
+                    {review ? <p>{review.username}</p> : <p>Loading...</p>}
+                    {review ? <p>{review.height}</p> : <p>Loading...</p>}
+                    {review ? <p>{review.weight} lbs</p> : <p>Loading...</p>}
+                    {review ? <p>{review.reviewheader}</p> : <p>Loading...</p>}
                     {review ? <p>{review.review}</p> : <p>Loading...</p>}
                     {review ? <img src={review.image} alt="item image" /> : <p>Loading...</p>}
                     <div className='horizontal'>
@@ -118,8 +120,6 @@ function ReviewsPage(inputVars) {
                 ))}
               </Masonry>
             </ResponsiveMasonry>
-            
-              
           </div>
           <div>
             <Input_review />

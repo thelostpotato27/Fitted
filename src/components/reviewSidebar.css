@@ -17,3 +17,23 @@
   width: 230px;
   height: 50px;
 }
+
+.review-header-reviewPage{
+  width: 30vw;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+}
+
+.textbox-reviewPage {
+  /* outline: 4px; */
+  width: 30vw;
+  min-height: 10vh; /* Minimum height */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  resize: vertical; /* Prevent manual resizing */
+  overflow-wrap: break-word; /* Ensures words wrap correctly */
+  word-wrap: break-word;
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
+}

@@ -81,7 +81,16 @@ function Img_input(){
 
     });
     const reviewID = v4()
+    let sizingData = {}
+    if ("weight" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("height" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("shoulder" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("chest" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("waist" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+    if ("hip" in globalVariable){sizingData = {...sizingData, weight: globalVariable.weight}}
+
     setDoc(doc(txtDB, "Clothing-item", clothingID, "reviews", reviewID), {
+      ...sizingData,
       reviewheader: reviewheader,
       review: review,
       image: imgID,

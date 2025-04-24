@@ -10,6 +10,8 @@ import './User.css'
 import FetchUserData from "../components/user-data-fetch";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import UserReviewDisplay from "../components/user-review-display";
+import { BrowserRouter as Router, Route, Routes, Link, useParams, useNavigate } from "react-router";
+
 
 function UserPage(){
   const { globalVariable, setGlobalVariable } = useGlobalContext();
@@ -19,8 +21,11 @@ function UserPage(){
   const [userDisplay, setuserDisplay] = useState([])
   const [imgsLoading, setimgsLoading] = useState(true)
   const [imgs, setimgs] = useState(null)
+  const navigate = useNavigate()
 
-
+  function updatepersonalData(){
+    navigate('/usersetup')
+  }
   
   function callSignout(){
     signOut(auth).then(() => {
@@ -72,6 +77,7 @@ function UserPage(){
           <img src={userDisplay[0][1]}></img>
           <p>Hello {userDisplay[0][0]}</p>
           <button onClick={callSignout}>Sign Out</button>
+          <button onClick={updatepersonalData}>Update Personal Data</button>
         </div>
         {displayUserReviews()}
       </div>

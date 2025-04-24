@@ -37,6 +37,7 @@
     flex-direction: column;
 
     justify-content: center;
+    position: relative;
 }
 
 .flash-text {
@@ -45,6 +46,12 @@
 
 .input-style input {
     height: 35px;
+    font-size: 20px;
+    width: 270px;
+}
+
+.height-selector{
+    height: 45px;
     font-size: 20px;
     width: 250px;
 }
@@ -59,8 +66,9 @@
 .input-name{
     display: flex;
     align-items: center;
-    width: 370px;
+    width: 390px;
     justify-content: space-between;
+    position: relative;
 }
 
 .input-name-right{
@@ -68,6 +76,7 @@
     align-items: center;
     width: 350px;
     justify-content: space-between;
+    position: relative;
 }
 
 .usersetup-user-input{
@@ -75,7 +84,8 @@
     align-items: center;
     justify-content: space-between;
     
-    width: 370px;
+    width: 390px;
+    position: relative;
     /* background-color: brown; */
 }
 
@@ -84,4 +94,36 @@
     align-items: center;
     /* background-color: brown; */
     margin-bottom: 20px;
+}
+
+.necessary-asterisk-weight{
+    color: rgb(255, 32, 32);
+    position: absolute;
+    right: 280px;
+    top: 10px;
+}
+.necessary-asterisk-height{
+    color: rgb(255, 32, 32);
+    position: absolute;
+    right: 252px;
+    top: 8px;
+}
+.necessary-asterisk-username{
+    color: rgb(255, 32, 32);
+    position: absolute;
+    right: 280px;
+    top: 10px;
+}
+
+.asterisk-legend{
+    position: absolute;
+    right: 20px;
+    top: -10px;
+}
+
+.asterisk-in-legend{
+    color: rgb(255, 32, 32);
+    position: absolute;
+    right: 200px;
+    top: 25px;
 }

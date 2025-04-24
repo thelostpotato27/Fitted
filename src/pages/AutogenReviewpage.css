@@ -39,9 +39,11 @@
     position: relative;
 }
 
+
 .autogen-item img{
     /* height: 400px; */
-    width: 18vw;
+    width: 100%;
+    height: auto;
     /* background-color: black; */
 }
 
