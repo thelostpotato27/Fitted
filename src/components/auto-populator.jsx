@@ -21,7 +21,7 @@ function ReviewPopulator(){
 
   useEffect(() => {
     // console.log("global var update calls fetchquery again")
-    fetchqueryData(6, globalVariable).then((fetched) => {
+    fetchqueryData(10, globalVariable).then((fetched) => {
       setData(fetched)
     })
   }, [globalVariable]);

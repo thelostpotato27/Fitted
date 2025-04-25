@@ -62,12 +62,11 @@ function ReviewSidebar(){
     return (<BiCheckbox/>)
   }
 
-  // useEffect(() => {
-  //   setGlobalVariable({gender:gender, clothing:clothingType, search:searchType, minstar:aboveStar})
-  // },[gender, clothingType, searchType, aboveStar])
-
   function updateRequest(){
-    console.log("update global ran")
+    console.log("update global ran:")
+    console.log("Gender: ", gender)
+    console.log("clothing type: ", clothingType)
+    console.log("search type: ", searchType)
     setGlobalVariable({gender:gender, clothing:clothingType, search:searchType, minstar:aboveStar})
   }
 
@@ -75,8 +74,6 @@ function ReviewSidebar(){
     <div className="sidebar">
       <Sidebar
         className={`app  ${toggled ? "toggled" : ""}`}
-        // className="sidebar"
-        // style={{ height: "100%", position: "absolute" }}
         collapsed={collapsed}
         toggled={toggled}
         handleToggleSidebar={handleToggleSidebar}
@@ -84,30 +81,17 @@ function ReviewSidebar(){
       >
         <main>
           <Menu>
-            {collapsed ? (
-              <MenuItem
-                icon={<FiChevronsRight />}
-                onClick={handleCollapsedChange}
-              ></MenuItem>
-            ) : (
-              <MenuItem
-                // suffix={<FiChevronsLeft />}
-                // onClick={handleCollapsedChange}
-              >
-                <div
-                  style={{
-                    padding: "9px",
-                    // textTransform: "uppercase",
-                    fontWeight: "bold",
-                    fontSize: 14,
-                    letterSpacing: "1px"
-                  }}
-                >
-                  Fitted
-                </div>
-              </MenuItem>
-            )}
-            <hr />
+            <div
+              style={{
+                padding: "9px",
+                // textTransform: "uppercase",
+                fontWeight: "bold",
+                fontSize: 20,
+                letterSpacing: "1px"
+              }}
+            >
+              Fitted
+            </div>
           </Menu>
 
           <Menu>
@@ -125,9 +109,9 @@ function ReviewSidebar(){
               <MenuItem icon={SearchBy("MR")} onClick={() => searchType == "MR" ? setsearchType(null) : setsearchType("MR")} className='menustyling'>Most Reviews</MenuItem>
               <MenuItem icon={SearchBy("HR")} onClick={() => searchType == "HR" ? setsearchType(null) : setsearchType("HR")} className='menustyling'>Highest Rating</MenuItem>
             </SubMenu>
-            <SubMenu defaultClose label={"Advanced Search"} >
+            {/* <SubMenu defaultClose label={"Advanced Search"} >
               <MenuItem icon={StarRating("SR")} onClick={() => aboveStar == "SR" ? setaboveStar(null) : setaboveStar("SR")} className='menustyling'>Above Star rating</MenuItem>
-            </SubMenu>
+            </SubMenu> */}
             <button onClick={updateRequest} className='updateButton'>Search</button>
           </Menu>
         </main>
