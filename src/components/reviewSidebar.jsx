@@ -97,7 +97,7 @@ function ReviewSidebar(){
           <Menu>
             <SubMenu defaultClose label={"Men/Women"}>
               <MenuItem icon={Genderset("M")} onClick={() => gender == "M" ? setgender(null) : setgender("M")} className='menustyling'>Men </MenuItem>
-              <MenuItem icon={Genderset("W")} onClick={() => gender == "W" ? setgender(null) : setgender("W")} className='menustyling'>Women </MenuItem>
+              <MenuItem icon={Genderset("F")} onClick={() => gender == "F" ? setgender(null) : setgender("F")} className='menustyling'>Women </MenuItem>
             </SubMenu>
             <SubMenu defaultClose label={"Clothing Types"} >
               <MenuItem icon={clothingset("T")} onClick={() => clothingType == "T" ? setclothingType(null) : setclothingType("T")} className='menustyling'>Tops </MenuItem>

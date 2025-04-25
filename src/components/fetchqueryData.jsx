@@ -1,13 +1,35 @@
 import {imgDB, txtDB } from "../firebaseConfig"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
-import { collection, doc, setDoc, query, limit, getDocs, orderBy  } from "firebase/firestore"
+import { collection, doc, setDoc, query, limit, getDocs, orderBy, where  } from "firebase/firestore"
 import React, { useState, useEffect } from 'react';
 
 
 async function fetchqueryData(num_fetch, searchParams) {
   console.log("search params item type: ",searchParams)
   const collectionRef = collection(txtDB, "Clothing-item");
-  const q = query(collectionRef, limit(num_fetch));
+  var q
+  const query_mod = []
+
+  if ("gender" in searchParams && searchParams.gender != null){
+    query_mod.push({field: "gender", operator: "==", value: searchParams.gender})
+  }
+  if ("company" in searchParams && searchParams.company != null){
+    query_mod.push({field: "company", operator: "==", value: searchParams.company})
+  }
+  if ("article-type" in searchParams && searchParams.article-type != null){
+    query_mod.push({field: "article-type", operator: "==", value: searchParams.article-type})
+  }
+  if ("origin" in searchParams && searchParams.origin != null){
+    query_mod.push({field: "origin", operator: "==", value: searchParams.origin})
+  }
+
+  if(query_mod.length == 0){
+    q = query(collectionRef, limit(num_fetch));
+  }else{
+    console.log("query mod before getting data: ", query_mod)
+    q = query(collectionRef, limit(num_fetch), ...query_mod.map((item) => where(item.field, item.operator, item.value),));
+  }
+  
   var getReviewarr = [];
   var QsnapshottoDoc = [];
   var results;
@@ -37,14 +59,17 @@ async function fetchqueryData(num_fetch, searchParams) {
   }
 
   const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((item) => {
+    console.log("query snapshot data: ", item.data())
+  })
   await getReviewdata(querySnapshot);
-  console.log("reviewarr: ", getReviewarr)
+  
   await parseReviewdata(getReviewarr);
   
   finalresults = getReviewarr.map((data, index) => 
     ({...data.reviewdata, image: results2[index]})
  );
-
+  console.log("final results out: ", finalresults)
   return finalresults;
 }
 

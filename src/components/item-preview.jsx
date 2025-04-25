@@ -2,28 +2,33 @@ import './item-preview.css'
 import { useState, useEffect } from 'react';
 
 function Item_preview(vars){
-  const [imageData, setimageData] = useState(vars.data)
-  const expected_types = ["name", "company", "ethnicity", "image"]
-  // await setimageData(vars.data)
+  const [imageData, setimageData] = useState(null)
 
-  expected_types.forEach(element => {
-    if (!(element in imageData)){
-      setimageData({element:"temp", ...imageData})
-    }
-  });
+  useEffect(() => {
+    console.log("in item preview vars: ", vars)
+    setimageData(vars.data)
+  })
   
-  return (
-    <>
-      <div className='preview-background'>
-        {imageData ? <img src={imageData.image} alt="item image" /> : <p>Loading...</p>}
-        <div className='line-margin'>
-          <h3>{imageData.name}</h3>
-          <p>{imageData.company}</p>
-          <p>{imageData.ethnicity}</p>
+  if(imageData != null){
+    return (
+      <>
+        <div className='preview-background'>
+          {imageData ? <img src={imageData.image} alt="item image" /> : <p>Loading...</p>}
+          <div className='line-margin'>
+            <h3>{imageData.name}</h3>
+            <p>{imageData.company}</p>
+            <p>{imageData.ethnicity}</p>
+            <p>{imageData.gender}</p>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }else{
+    return(
+      <></>
+    )
+  }
+  
 }
 
 export default Item_preview
