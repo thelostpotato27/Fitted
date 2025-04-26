@@ -37,3 +37,33 @@
   word-wrap: break-word;
   white-space: pre-wrap; /* Preserves spaces and line breaks */
 }
+
+.search-item-style{
+  height: 20vh;
+  /* background-color: blue; */
+  position: relative;
+}
+.search-item-style div{
+  /* background-color: aquamarine; */
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  height: 80%;
+}
+.search-item-style div input{
+  width: 70%;
+  height: 25px;
+  font-size: 17px;
+}
+.search-item-style div ul{
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+.search-item-style div ul li{
+  cursor: pointer;
+  padding: 5px;
+}
+.search-item-style div ul li:hover{
+  background-color: #ddd;
+}

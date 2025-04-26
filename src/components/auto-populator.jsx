@@ -16,7 +16,7 @@ function ReviewPopulator(){
 
   useEffect(() => {
     setLoading(false);
-    console.log("data got from fetchquery: ", data)
+    // console.log("data got from fetchquery: ", data)
   }, [data]);
 
 
@@ -28,7 +28,7 @@ function ReviewPopulator(){
   }, [globalVariable]);
 
   function combineURL(urlName) {
-    console.log("urlname output: ", urlName)
+    // console.log("urlname output: ", urlName)
     return `/Reviews/${urlName.company}-${urlName.name}`
   }
   

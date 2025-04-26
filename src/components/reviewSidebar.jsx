@@ -15,7 +15,7 @@ import {
 } from "react-icons/ri";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import { BiCheckbox, BiCheckboxChecked  } from "react-icons/bi";
-
+import clothingDataTypes from "./allClothingTypes.json"
 
 function ReviewSidebar(){
   const { globalVariable, setGlobalVariable } = useReviewGlobalContext();
@@ -26,6 +26,14 @@ function ReviewSidebar(){
   const [clothingType, setclothingType] = useState(null);
   const [searchType, setsearchType] = useState(null);
   const [aboveStar, setaboveStar] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("")
+  const [searchChanged, setsearchChanged] = useState(false)
+  const [clothingData, setclothingData] = useState({})
+
+  useEffect(() => {
+    setclothingData(clothingDataTypes)
+    console.log("clothing data just set")
+  }, clothingDataTypes)
 
   const handleCollapsedChange = () => {
     setCollapsed(!collapsed);
@@ -70,6 +78,40 @@ function ReviewSidebar(){
     setGlobalVariable({gender:gender, clothing:clothingType, search:searchType, minstar:aboveStar})
   }
 
+  const items = [
+    "Hoodie", "T-Shirt", "Sweater", "Jeans", "Joggers", 
+    "Shorts", "Jacket", "Coat", "Sneakers", "Boots", 
+    "Sandals", "Backpack", "Hat", "Scarf"
+  ]
+
+  const filteredItems = items.filter(item =>
+    item.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const handleSearchItemClick = (item) => {
+    setSearchTerm(item); // Fills search box with clicked item
+    setsearchChanged(false)
+  };
+
+
+  function autogenAllClothingOptions(genderinput){
+    console.log("what is object.keys trying to parse: ", clothingData)
+    console.log("what is gender input? ", genderinput)
+    const allkeys = Object.keys(clothingDataTypes[genderinput])
+    console.log("all keys: ", allkeys)
+    return(
+      <>
+        {allkeys.map((key) => (
+          <SubMenu defaultClose label={key}>
+            {clothingDataTypes[genderinput][key].map((item) => (
+              <MenuItem>{item}</MenuItem>
+            ))}
+          </SubMenu>
+        ))}
+      </>
+    )
+  }
+
   return(
     <div className="sidebar">
       <Sidebar
@@ -95,13 +137,37 @@ function ReviewSidebar(){
           </Menu>
 
           <Menu>
-            <SubMenu defaultClose label={"Men/Women"}>
-              <MenuItem icon={Genderset("M")} onClick={() => gender == "M" ? setgender(null) : setgender("M")} className='menustyling'>Men </MenuItem>
-              <MenuItem icon={Genderset("F")} onClick={() => gender == "F" ? setgender(null) : setgender("F")} className='menustyling'>Women </MenuItem>
+            <SubMenu defaultClose label={"Men"}>
+              {clothingData == {} ? (<MenuItem defaultClose label={"Loading"}></MenuItem>) : autogenAllClothingOptions("male")}
             </SubMenu>
+
+            <SubMenu defaultClose label={"Women"}>
+              {/* <MenuItem icon={Genderset("female")} onClick={() => gender == "female" ? setgender(null) : setgender("female")} className='menustyling'>Women </MenuItem> */}
+              {clothingData == {} ? (<MenuItem defaultClose label={"Loading"}></MenuItem>) : autogenAllClothingOptions("female")}
+            </SubMenu>
+
             <SubMenu defaultClose label={"Clothing Types"} >
-              <MenuItem icon={clothingset("T")} onClick={() => clothingType == "T" ? setclothingType(null) : setclothingType("T")} className='menustyling'>Tops </MenuItem>
-              <MenuItem icon={clothingset("B")} onClick={() => clothingType == "B" ? setclothingType(null) : setclothingType("B")} className='menustyling'>Bottoms </MenuItem>
+              <MenuItem icon={clothingset("Top")} onClick={() => clothingType == "Top" ? setclothingType(null) : setclothingType("Top")} className='menustyling'>Tops </MenuItem>
+              <MenuItem icon={clothingset("Bottom")} onClick={() => clothingType == "Bottom" ? setclothingType(null) : setclothingType("Bottom")} className='menustyling'>Bottoms </MenuItem>
+              <MenuItem className='search-item-style'>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Specific Search"
+                    value={searchTerm}
+                    onChange={(e) => {setSearchTerm(e.target.value); setsearchChanged(true)}}
+                  />
+                  {searchTerm != "" && searchChanged && (
+                    <ul>
+                      {filteredItems.map((item, index) => (
+                        <li key={index} onClick={() => handleSearchItemClick(item)}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  
+                </div>
+                
+              </MenuItem>
             </SubMenu>
             <SubMenu defaultClose label={"Search By"}>
               <MenuItem icon={SearchBy("H")} onClick={() => searchType == "H" ? setsearchType(null) : setsearchType("H")} className='menustyling'>Hot/Trending</MenuItem>

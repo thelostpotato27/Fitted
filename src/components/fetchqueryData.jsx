@@ -26,7 +26,7 @@ async function fetchqueryData(num_fetch, searchParams) {
   if(query_mod.length == 0){
     q = query(collectionRef, limit(num_fetch));
   }else{
-    console.log("query mod before getting data: ", query_mod)
+    // console.log("query mod before getting data: ", query_mod)
     q = query(collectionRef, limit(num_fetch), ...query_mod.map((item) => where(item.field, item.operator, item.value),));
   }
   
@@ -60,7 +60,7 @@ async function fetchqueryData(num_fetch, searchParams) {
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((item) => {
-    console.log("query snapshot data: ", item.data())
+    // console.log("query snapshot data: ", item.data())
   })
   await getReviewdata(querySnapshot);
   
@@ -69,7 +69,7 @@ async function fetchqueryData(num_fetch, searchParams) {
   finalresults = getReviewarr.map((data, index) => 
     ({...data.reviewdata, image: results2[index]})
  );
-  console.log("final results out: ", finalresults)
+  // console.log("final results out: ", finalresults)
   return finalresults;
 }
 

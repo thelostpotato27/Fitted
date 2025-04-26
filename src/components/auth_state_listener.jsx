@@ -13,14 +13,14 @@ async function userAuth(){
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log("user auth use Effect pop")
+    // console.log("user auth use Effect pop")
     if(user != null && "uid" in user){
       const docref = doc(txtDB, "User-data", `${user.uid}`)
       getDoc(docref).then((data) => {
-        console.log("useEffect in auth state: ", data.data())
+        // console.log("useEffect in auth state: ", data.data())
         const userData = data.data()
         if ("username" in userData){
-          console.log("Userdata before put in global var: ", userData)
+          // console.log("Userdata before put in global var: ", userData)
           setGlobalVariable({...user, ...userData})
           // console.log("global variable after data set: ", globalVariable.username)
         }else{
@@ -35,7 +35,7 @@ async function userAuth(){
     if (user) {
       const userOut = user.uid;
       // setGlobalVariable(user)
-      console.log("auth state change set here")
+      // console.log("auth state change set here")
       setuser(user)
 
       // return user
@@ -44,7 +44,7 @@ async function userAuth(){
       // ...
       // console.log("User logged out, seen from auth state listener")
       setGlobalVariable(null)
-      console.log("auth state listener global store after logout: ",globalVariable)
+      // console.log("auth state listener global store after logout: ",globalVariable)
       // return null
     }
   });

@@ -1,0 +1,16 @@
+{
+  "male":{
+    "tops":["Button-Up Shirt", "Camp Shirt", "Casual Shirt", "Dress Shirt", "Flannel Shirt", "Graphic Tee", "Henley Shirt", "Long-Sleeve Shirt", "Polo Shirt", "Sleeveless Shirt", "Sweater", "Sweatshirt", "Tank Top", "Tunic", "Turtleneck", "Work Shirt"],
+    "pants":["Cargo Pants", "Chinos", "Corduroy Pants", "Dress Pants", "Jeans", "Joggers", "Leather Pants", "Linen Pants", "Pleated Trousers", "Slim-Fit Pants", "Sweatpants", "Tapered Pants", "Track Pants", "Wide-Leg Pants", "Work Pants"],
+    "shorts":["Athletic Shorts", "Board Shorts", "Cargo Shorts", "Chino Shorts", "Denim Shorts", "Linen Shorts", "Pleated Shorts", "Relaxed Fit Shorts", "Running Shorts", "Swim Shorts", "Tailored Shorts", "Utility Shorts"],
+    "outerwear":["Blazer", "Bomber Jacket", "Cardigan", "Coat", "Denim Jacket", "Duffle Coat", "Fleece Jacket", "Leather Jacket", "Parka", "Pea Coat", "Puffer Jacket", "Rain Jacket", "Trench Coat", "Utility Jacket", "Windbreaker", "Wool Coat"]
+  },
+  "female":{
+    "tops":["Blouse", "Bodysuit", "Button-Up Shirt", "Camisole", "Crop Top", "Graphic Tee", "Henley Shirt", "Long-Sleeve Shirt", "Peplum Top", "Polo Shirt", "Sleeveless Top", "Sweatshirt", "Tank Top", "Tunic", "Turtleneck", "Wrap Top"],
+    "bottoms":["Bootcut Pants", "Cargo Pants", "Cropped Pants", "Culottes", "Dress Pants", "Flared Pants", "High-Waisted Pants", "Joggers", "Leather Pants", "Leggings", "Palazzo Pants", "Pleated Pants", "Skinny Pants", "Slacks", "Straight-Leg Pants", "Sweatpants", "Tapered Pants", "Track Pants", "Wide-Leg Pants"],
+    "skirts": ["A-Line Skirt", "Asymmetrical Skirt", "Ball Skirt", "Bubble Skirt", "Cargo Skirt", "Circle Skirt", "Denim Skirt", "Flared Skirt", "High-Waisted Skirt", "Knife-Pleated Skirt", "Leather Skirt", "Maxi Skirt", "Mermaid Skirt", "Midi Skirt", "Mini Skirt", "Pencil Skirt", "Ruffle Skirt", "Skater Skirt", "Tiered Skirt", "Tulip Skirt", "Wrap Skirt"],
+    "outerwear":["Blazer", "Bomber Jacket", "Cape", "Cardigan", "Coat", "Denim Jacket", "Duster", "Faux Fur Coat", "Leather Jacket", "Parka", "Pea Coat", "Poncho", "Rain Jacket", "Trench Coat", "Utility Jacket", "Windbreaker"],
+    "dress":["Athleisure Dress", "Bodycon Dress", "Boho Dress", "Casual Dress", "Cocktail Dress", "Formal Dress", "Gown", "Maternity Dress", "Maxi Dress", "Mini Dress", "Occasion Dress", "Shirt Dress", "Summer Dress", "Sweater Dress", "Vintage Dress", "Workwear Dress", "Wrap Dress"],
+    "jumpsuit":["Casual Jumpsuit", "Denim Jumpsuit", "Dressy Jumpsuit", "Flared Jumpsuit", "Formal Jumpsuit", "Linen Jumpsuit", "Long-Sleeve Jumpsuit", "Overall Jumpsuit", "Palazzo Jumpsuit", "Printed Jumpsuit", "Relaxed Fit Jumpsuit", "Romper", "Sleeveless Jumpsuit", "Utility Jumpsuit", "Wide-Leg Jumpsuit", "Wrap Jumpsuit"]
+  }
+}

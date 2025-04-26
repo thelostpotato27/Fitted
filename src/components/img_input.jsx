@@ -11,7 +11,7 @@ import {useGlobalContext} from './global_context'
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
-
+import clothingDataTypes from "./allClothingTypes.json"
 
 function Img_input(){
   const { globalVariable, setGlobalVariable } = useGlobalContext();
@@ -23,7 +23,7 @@ function Img_input(){
   const [src,setsrc] = useState('')
   const [img,setimg] = useState(null)
   const [gender, setgender] = useState(null)
-  const [articleType, setarticleType] = useState(null)
+  const [articleType, setarticleType] = useState({value: "", optGroup: ""})
   const [origin, setorigin] = useState(null)
   const [showPopup, setShowPopup] = useState(false);
   const [isflashing, setisflashing] = useState(false);
@@ -72,7 +72,7 @@ function Img_input(){
     console.log("img uploader running")
     e.preventDefault();
 
-    if(name == '' || url == '' || reviewheader == '' || review == '' || company == '' || src == '' || stars == '' || cropfile == null || gender == null || gender == "" || articleType == "" || articleType == null || origin == null || origin == ""){
+    if(name == '' || url == '' || reviewheader == '' || review == '' || company == '' || src == '' || stars == '' || cropfile == null || gender == null || gender == "" || articleType.value == "" || articleType == null || origin == null || origin == ""){
       setisflashing(true)
       setTimeout(() => {
         setisflashing(false)
@@ -92,7 +92,8 @@ function Img_input(){
       ethnicity: origin,
       staravg: stars,
       reviewnum: 1,
-      articleType: articleType,
+      articleType: articleType.value,
+      generalarticleType: articleType.optGroup,
       gender: gender
 
     });
@@ -185,100 +186,31 @@ function Img_input(){
     }, 'image/png')
   };
 
+  const handleClothingChange = (event) => {
+    const selectedOption = event.tarket.selectedOption[0]
+    const value = selectedOption.value
+    const optGroup = selectedOption.parentElement.tagName === "OPTGROUP" ? selectedOption.parentElement.label : "No OptGroup";
+    (console.log("value and optgroup: ", value, " ", optGroup))
+    setarticleType({value, optGroup})
+  }
+
   function clothingType(){
     if(gender == null || gender == ""){
       return(
         <p>Please select the Intended Audience</p>
       )
-    }else if(gender == "M"){
+    }else{
+      const allkeys = Object.keys(clothingDataTypes[gender])
       return(
-        <select id="mens-clothing" value={articleType} onChange={(e) => setarticleType(e.target.value)}>
+        <select id="mens-clothing" value={articleType} onChange={handleClothingChange}>
           <option value="">--Select--</option>
-          <optgroup label="Tops">
-            <option value="dress-shirt">Dress Shirt</option>
-            <option value="hawaiian shirt">Hawaiian shirt</option>
-            <option value="henley">Henley</option>
-            <option value="polo-shirt">Polo Shirt</option>
-            <option value="sweatshirt">Sweatshirt</option>
-            <option value="t-shirt">T-Shirt</option>
-            <option value="tank-top">Tank Top</option>
-          </optgroup>
-          <optgroup label="Bottoms">
-            <option value="chinos">Chinos</option>
-            <option value="jeans">Jeans</option>
-            <option value="joggers">Joggers</option>
-            <option value="shorts">Shorts</option>
-            <option value="sweatpants">Sweatpants</option>
-            <option value="trousers">Trousers</option>
-          </optgroup>
-          <optgroup label="Outerwear">
-            <option value="bomber-jacket">Bomber Jacket</option>
-            <option value="cardigan">Cardigan</option>
-            <option value="coat">Coat</option>
-            <option value="hoodie">Hoodie</option>
-            <option value="leather-jacket">Leather Jacket</option>
-            <option value="pea-coat">Pea Coat</option>
-          </optgroup>
-          <optgroup label="Footwear">
-            <option value="boots">Boots</option>
-            <option value="dress-shoes">Dress Shoes</option>
-            <option value="flip-flops">Flip-Flops</option>
-            <option value="sneakers">Sneakers</option>
-            <option value="sandals">Sandals</option>
-          </optgroup>
-        </select>
-      )
-    }else if(gender == "W"){
-      return(
-        <select id="womens-clothing" value={articleType} onChange={(e) => setarticleType(e.target.value)}>
-          <option value="">--Select--</option>
-          <optgroup label="Tops">
-            <option value="blouse">Blouse</option>
-            <option value="crop-top">Crop Top</option>
-            <option value="dress-shirt">Dress Shirt</option>
-            <option value="henley">Henley</option>
-            <option value="polo-shirt">Polo Shirt</option>
-            <option value="sweatshirt">Sweatshirt</option>
-            <option value="tank-top">Tank Top</option>
-            <option value="t-shirt">T-Shirt</option>
-            <option value="tube top">Tube Top</option>
-          </optgroup>
-          <optgroup label="Bottoms">
-            <option value="chinos">Chinos</option>
-            <option value="jeans">Jeans</option>
-            <option value="joggers">Joggers</option>
-            <option value="leggings">Leggings</option>
-            <option value="shorts">Shorts</option>
-            <option value="skirt">Skirt</option>
-            <option value="sweatpants">Sweatpants</option>
-            <option value="trousers">Trousers</option>
-          </optgroup>
-          <optgroup label="Dresses & Jumpsuits">
-            <option value="cocktail-dress">Cocktail Dress</option>
-            <option value="evening-gown">Evening Gown</option>
-            <option value="jumpsuit">Jumpsuit</option>
-            <option value="maxi-dress">Maxi Dress</option>
-            <option value="midi-dress">Maxi Dress</option>
-            <option value="mini-dress">Maxi Dress</option>
-            <option value="sundress">Sundress</option>
-            <option value="wrap-dress">Wrap Dress</option>
-          </optgroup>
-          <optgroup label="Outerwear">
-            <option value="cardigan">Cardigan</option>
-            <option value="coat">Coat</option>
-            <option value="denim-jacket">Denim Jacket</option>
-            <option value="hoodie">Hoodie</option>
-            <option value="leather-jacket">Leather Jacket</option>
-            <option value="pea-coat">Pea Coat</option>
-            <option value="puffer-jacket">Puffer Jacket</option>
-          </optgroup>
-          <optgroup label="Footwear">
-            <option value="ankle-boots">Ankle Boots</option>
-            <option value="ballet-flats">Ballet Flats</option>
-            <option value="heels">Heels</option>
-            <option value="sandals">Sandals</option>
-            <option value="sneakers">Sneakers</option>
-          </optgroup>
+          {allkeys.map((key) => (
+            <optgroup label={key}>
+              {clothingDataTypes[gender][key].map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </optgroup>
+          ))}
         </select>
       )
     }
@@ -304,8 +236,8 @@ function Img_input(){
             <h3>Intended Audience</h3>
             <select id="gender" value={gender} onChange={(e) => setgender(e.target.value)}>
               <option value="">--Select--</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
           <div>

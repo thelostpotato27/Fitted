@@ -5,7 +5,7 @@ function Item_preview(vars){
   const [imageData, setimageData] = useState(null)
 
   useEffect(() => {
-    console.log("in item preview vars: ", vars)
+    // console.log("in item preview vars: ", vars)
     setimageData(vars.data)
   })
   

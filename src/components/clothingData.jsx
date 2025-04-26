@@ -41,7 +41,7 @@ async function fetchClothingData(page_name) {
   finalresults = tempArray.map((data, index) =>
     ({...data, image: results2[index], username:userdataPromise[index].data().username})
   );
-  console.log("fetch clothing data: ", finalresults)
+  // console.log("fetch clothing data: ", finalresults)
   return [finalresults, getReviewarr.generalData];
 }
 
